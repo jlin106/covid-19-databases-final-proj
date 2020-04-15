@@ -106,3 +106,55 @@ CREATE TABLE ExportsTo_small (
   FOREIGN KEY (exportToCountryId) REFERENCES Country_small(countryId)
 );
 
+LOAD DATA LOCAL INFILE './small_relation_data/country-small.txt' 
+ INTO TABLE Country_small
+ FIELDS TERMINATED BY ' '
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/laborForce-small.txt'
+ INTO TABLE LaborForce_small
+ FIELDS TERMINATED BY ' '
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/population-small.txt'
+ INTO TABLE Population_small
+ FIELDS TERMINATED BY ' '
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/education-small.txt'
+ INTO TABLE Education_small
+ FIELDS TERMINATED BY ' '
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/dailyCOVID19-small.txt'
+ INTO TABLE DailyCOVID19Reports_small
+ FIELDS TERMINATED BY ' '
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/travel-small.txt'
+ INTO TABLE Travel_small
+ FIELDS TERMINATED BY ','
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/health-small.txt'
+ INTO TABLE Health_small
+ FIELDS TERMINATED BY ','
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/gdp-small.txt'
+ INTO TABLE GDP_small
+ FIELDS TERMINATED BY ','
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/importsFrom-small.txt'
+ INTO TABLE ImportsFrom_small
+ FIELDS TERMINATED BY ','
+ IGNORE 1 LINES;
+
+LOAD DATA LOCAL INFILE './small_relation_data/exportsTo-small.txt'
+ INTO TABLE ExportsTo_small
+ FIELDS TERMINATED BY ','
+ IGNORE 1 LINES;
+
+
+
