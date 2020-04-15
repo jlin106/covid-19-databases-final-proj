@@ -111,18 +111,10 @@ LOAD DATA LOCAL INFILE './small_relation_data/country-small.txt'
  FIELDS TERMINATED BY ' '
  IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE './small_relation_data/laborForce-small.txt'
- INTO TABLE LaborForce_small
+LOAD DATA LOCAL INFILE './small_relation_data/dailyCOVID19-small.txt'
+ INTO TABLE DailyCOVID19Reports_small
  FIELDS TERMINATED BY ' '
- IGNORE 1 LINES
- (countryId, @vlaborForceParticipationRate, @vunemploymentRate,
-   @vpercentEmplAgriculture, @vpercentEmplIndustry, @vpercentEmplServices)
- SET
- laborForceParticipationRate = nullif(@vlaborForceParticipationRate,'NULL'),
- unemploymentRate = nullif(@vunemploymentRate,'NULL'),
- percentEmplAgriculture = nullif(@vpercentEmplAgriculture,'NULL'),
- percentEmplIndustry = nullif(@vpercentEmplIndustry,'NULL'),
- percentEmplServices = nullif(@vpercentEmplServices,'NULL');
+ IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE './small_relation_data/population-small.txt'
  INTO TABLE Population_small
@@ -149,11 +141,19 @@ LOAD DATA LOCAL INFILE './small_relation_data/education-small.txt'
  primaryEdPercent = nullif(@vprimaryEdPercent,'NULL'),
  secondaryEdPercent = nullif(@vsecondaryEdPercent,'NULL'),
  tertiaryEdPercent = nullif(@vtertiaryEdPercent,'NULL');
-
-LOAD DATA LOCAL INFILE './small_relation_data/dailyCOVID19-small.txt'
- INTO TABLE DailyCOVID19Reports_small
+ 
+LOAD DATA LOCAL INFILE './small_relation_data/laborForce-small.txt'
+ INTO TABLE LaborForce_small
  FIELDS TERMINATED BY ' '
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vlaborForceParticipationRate, @vunemploymentRate,
+   @vpercentEmplAgriculture, @vpercentEmplIndustry, @vpercentEmplServices)
+ SET
+ laborForceParticipationRate = nullif(@vlaborForceParticipationRate,'NULL'),
+ unemploymentRate = nullif(@vunemploymentRate,'NULL'),
+ percentEmplAgriculture = nullif(@vpercentEmplAgriculture,'NULL'),
+ percentEmplIndustry = nullif(@vpercentEmplIndustry,'NULL'),
+ percentEmplServices = nullif(@vpercentEmplServices,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/travel-small.txt'
  INTO TABLE Travel_small
