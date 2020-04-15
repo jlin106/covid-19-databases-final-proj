@@ -94,7 +94,7 @@ CREATE TABLE ImportsFrom_small (
   percentImportOfTotalTrade NUMERIC(3,1),
   PRIMARY KEY (countryId, importFromCountryId),
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId),
-  FOREIGN KEY (importFromCountryId) REFERENCES Country_small(countryId)
+  FOREIGN KEY (importFromCountryId) REFERENCES Country_small (countryId)
 );
 
 CREATE TABLE ExportsTo_small (
@@ -103,10 +103,10 @@ CREATE TABLE ExportsTo_small (
   percentExportOfTotalTrade NUMERIC(3,1),
   PRIMARY KEY (countryId, exportToCountryId),
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId),
-  FOREIGN KEY (exportToCountryId) REFERENCES Country_small(countryId)
+  FOREIGN KEY (exportToCountryId) REFERENCES Country_small (countryId)
 );
 
-LOAD DATA LOCAL INFILE './small_relation_data/country-small.txt' 
+LOAD DATA LOCAL INFILE './small_relation_data/country-small.txt'
  INTO TABLE Country_small
  FIELDS TERMINATED BY ' '
  IGNORE 1 LINES;
@@ -114,17 +114,41 @@ LOAD DATA LOCAL INFILE './small_relation_data/country-small.txt'
 LOAD DATA LOCAL INFILE './small_relation_data/laborForce-small.txt'
  INTO TABLE LaborForce_small
  FIELDS TERMINATED BY ' '
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vlaborForceParticipationRate, @vunemploymentRate,
+   @vpercentEmplAgriculture, @vpercentEmplIndustry, @vpercentEmplServices)
+ SET
+ laborForceParticipationRate = nullif(@vlaborForceParticipationRate,'NULL'),
+ unemploymentRate = nullif(@vunemploymentRate,'NULL'),
+ percentEmplAgriculture = nullif(@vpercentEmplAgriculture,'NULL'),
+ percentEmplIndustry = nullif(@vpercentEmplIndustry,'NULL'),
+ percentEmplServices = nullif(@vpercentEmplServices,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/population-small.txt'
  INTO TABLE Population_small
  FIELDS TERMINATED BY ' '
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vestPopSize, @vpopDensity, @vrateIncrease, @vlifeExpectancy,
+   @vmortalityRate, @vfertilityRate)
+ SET
+ estPopSize = nullif(@vestPopSize,'NULL'),
+ popDensity = nullif(@vpopDensity,'NULL'),
+ rateIncrease = nullif(@vrateIncrease,'NULL'),
+ lifeExpectancy = nullif(@vlifeExpectancy,'NULL'),
+ mortalityRate = nullif(@vmortalityRate,'NULL'),
+ fertilityRate = nullif(@vfertilityRate,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/education-small.txt'
  INTO TABLE Education_small
  FIELDS TERMINATED BY ' '
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vtotalPublicExp, @vprimaryEdPercent, @vsecondaryEdPercent,
+   @vtertiaryEdPercent)
+ SET
+ totalPublicExp = nullif(@vtotalPublicExp,'NULL'),
+ primaryEdPercent = nullif(@vprimaryEdPercent,'NULL'),
+ secondaryEdPercent = nullif(@vsecondaryEdPercent,'NULL'),
+ tertiaryEdPercent = nullif(@vtertiaryEdPercent,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/dailyCOVID19-small.txt'
  INTO TABLE DailyCOVID19Reports_small
@@ -134,17 +158,37 @@ LOAD DATA LOCAL INFILE './small_relation_data/dailyCOVID19-small.txt'
 LOAD DATA LOCAL INFILE './small_relation_data/travel-small.txt'
  INTO TABLE Travel_small
  FIELDS TERMINATED BY ','
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vmigrantPercentOfPop, @vnumRefugeesAndAsylum, 
+   @vtourismExp, @vnumTourists)
+ SET
+ migrantPercentOfPop = nullif(@vmigrantPercentOfPop,'NULL'),
+ numRefugeesAndAsylum = nullif(@vnumRefugeesAndAsylum,'NULL'),
+ tourismExp = nullif(@vtourismExp,'NULL'),
+ numTourists = nullif(@vnumTourists,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/health-small.txt'
  INTO TABLE Health_small
  FIELDS TERMINATED BY ','
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vhealthExp, @vphysiciansPer1000, @vpopUsingSafeSanitationFacilities,
+   @vpopUsingSafeWaterServices)
+ SET
+ healthExp = nullif(@vhealthExp,'NULL'),
+ physiciansPer1000 = nullif(@vphysiciansPer1000,'NULL'),
+ popUsingSafeSanitationFacilities = nullif(@vpopUsingSafeSanitationFacilities,'NULL'),
+ popUsingSafeWaterServices = nullif(@vpopUsingSafeWaterServices,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/gdp-small.txt'
  INTO TABLE GDP_small
  FIELDS TERMINATED BY ','
- IGNORE 1 LINES;
+ IGNORE 1 LINES
+ (countryId, @vgdp, @vgdpPerCapita, @vrdGDPExp, @vhealthGDPExp)
+ SET
+ gdp = nullif(@vgdp,'NULL'),
+ gdpPerCapita = nullif(@vgdpPerCapita,'NULL'),
+ rdGDPExp = nullif(@vrdGDPExp,'NULL'),
+ healthGDPExp = nullif(@vhealthGDPExp,'NULL');
 
 LOAD DATA LOCAL INFILE './small_relation_data/importsFrom-small.txt'
  INTO TABLE ImportsFrom_small
@@ -155,6 +199,3 @@ LOAD DATA LOCAL INFILE './small_relation_data/exportsTo-small.txt'
  INTO TABLE ExportsTo_small
  FIELDS TERMINATED BY ','
  IGNORE 1 LINES;
-
-
-
