@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS Country_small;
-CREATE TABLE Country_small (
+CREATE TABLE IF NOT EXISTS  Country_small (
   countryId INTEGER NOT NULL,
   name VARCHAR(40) NOT NULL,
   PRIMARY KEY (countryId)
@@ -51,3 +50,57 @@ CREATE TABLE LaborForce_small (
   PRIMARY KEY (countryId),
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
+
+DROP TABLE IF EXISTS Travel_small;
+CREATE TABLE Travel_small (
+  countryId INTEGER NOT NULL,
+  migrantPercentOfPop NUMERIC(3, 1),
+  numRefugeesAndAsylum INTEGER,
+  tourismExp INTEGER,
+  numTourists INTEGER,
+  PRIMARY KEY (countryId),
+  FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
+);
+
+DROP TABLE IF EXISTS Health_small;
+CREATE TABLE Health_small (
+  countryId INTEGER NOT NULL,
+  healthExp NUMERIC(3,1),
+  physiciansPer1000 NUMERIC(2,1),
+  popUsingSafeSanitationFacilities NUMERIC(3,1),
+  popUsingSafeWaterServices NUMERIC(3,1),
+  PRIMARY KEY (countryId),
+  FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
+);
+
+DROP TABLE IF EXISTS GDP_small;
+CREATE TABLE GDP_small (
+  countryId INTEGER NOT NULL,
+  gdp INTEGER,
+  gdpPerCapita INTEGER,
+  rdGDPExp NUMERIC(3,1),
+  healthGDPExp NUMERIC(3,1),
+  PRIMARY KEY (countryId),
+  FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
+);
+
+DROP TABLE IF EXISTS ImportsFrom_small;
+CREATE TABLE ImportsFrom_small (
+  countryId INTEGER NOT NULL,
+  importFromCountryId INTEGER NOT NULL,
+  percentImportOfTotalTrade NUMERIC(3,1),
+  PRIMARY KEY (countryId, importFromCountryId),
+  FOREIGN KEY (countryId) REFERENCES Country_small (countryId),
+  FOREIGN KEY (importFromCountryId) REFERENCES Country_small(countryId)
+);
+
+DROP TABLE IF EXISTS ExportsTo_small;
+CREATE TABLE ExportsTo_small (
+  countryId INTEGER NOT NULL,
+  exportToCountryId INTEGER NOT NULL,
+  percentExportOfTotalTrade NUMERIC(3,1),
+  PRIMARY KEY (countryId, exportToCountryId),
+  FOREIGN KEY (countryId) REFERENCES Country_small (countryId),
+  FOREIGN KEY (exportToCountryId) REFERENCES Country_small(countryId)
+);
+
