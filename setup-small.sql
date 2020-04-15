@@ -1,10 +1,20 @@
-CREATE TABLE IF NOT EXISTS  Country_small (
+DROP TABLE IF EXISTS DailyCOVID19Reports_small;
+DROP TABLE IF EXISTS Population_small;
+DROP TABLE IF EXISTS Education_small;
+DROP TABLE IF EXISTS LaborForce_small;
+DROP TABLE IF EXISTS Travel_small;
+DROP TABLE IF EXISTS Health_small;
+DROP TABLE IF EXISTS GDP_small;
+DROP TABLE IF EXISTS ImportsFrom_small;
+DROP TABLE IF EXISTS ExportsTo_small;
+DROP TABLE IF EXISTS Country_small;
+
+CREATE TABLE Country_small (
   countryId INTEGER NOT NULL,
   name VARCHAR(40) NOT NULL,
   PRIMARY KEY (countryId)
 );
 
-DROP TABLE IF EXISTS DailyCOVID19Reports_small;
 CREATE TABLE DailyCOVID19Reports_small (
   countryId INTEGER NOT NULL,
   date DATE NOT NULL,
@@ -15,7 +25,6 @@ CREATE TABLE DailyCOVID19Reports_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS Population_small;
 CREATE TABLE Population_small (
   countryId INTEGER NOT NULL,
   estPopSize FLOAT(2),
@@ -28,7 +37,6 @@ CREATE TABLE Population_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS Education_small;
 CREATE TABLE Education_small (
   countryId INTEGER NOT NULL,
   totalPublicExp NUMERIC(3, 1),
@@ -39,7 +47,6 @@ CREATE TABLE Education_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS LaborForce_small;
 CREATE TABLE LaborForce_small (
   countryId INTEGER NOT NULL,
   laborForceParticipationRate NUMERIC(3, 1),
@@ -51,7 +58,6 @@ CREATE TABLE LaborForce_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS Travel_small;
 CREATE TABLE Travel_small (
   countryId INTEGER NOT NULL,
   migrantPercentOfPop NUMERIC(3, 1),
@@ -62,7 +68,6 @@ CREATE TABLE Travel_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS Health_small;
 CREATE TABLE Health_small (
   countryId INTEGER NOT NULL,
   healthExp NUMERIC(3,1),
@@ -73,7 +78,6 @@ CREATE TABLE Health_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS GDP_small;
 CREATE TABLE GDP_small (
   countryId INTEGER NOT NULL,
   gdp INTEGER,
@@ -84,7 +88,6 @@ CREATE TABLE GDP_small (
   FOREIGN KEY (countryId) REFERENCES Country_small (countryId)
 );
 
-DROP TABLE IF EXISTS ImportsFrom_small;
 CREATE TABLE ImportsFrom_small (
   countryId INTEGER NOT NULL,
   importFromCountryId INTEGER NOT NULL,
@@ -94,7 +97,6 @@ CREATE TABLE ImportsFrom_small (
   FOREIGN KEY (importFromCountryId) REFERENCES Country_small(countryId)
 );
 
-DROP TABLE IF EXISTS ExportsTo_small;
 CREATE TABLE ExportsTo_small (
   countryId INTEGER NOT NULL,
   exportToCountryId INTEGER NOT NULL,
