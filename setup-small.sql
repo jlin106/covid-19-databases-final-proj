@@ -1,3 +1,6 @@
+-- Jennifer Lin, jlin123
+-- Tanner Amundsen, tamunds1
+
 DROP TABLE IF EXISTS DailyCOVID19Reports_small;
 DROP TABLE IF EXISTS Population_small;
 DROP TABLE IF EXISTS Education_small;
