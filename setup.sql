@@ -203,12 +203,3 @@ LOAD DATA LOCAL INFILE './full_relation_data/exportsTo.txt'
  FIELDS TERMINATED BY ','
  IGNORE 1 LINES;
 
--- Procedure to get country names
-delimiter //
-DROP PROCEDURE IF EXISTS GetCountryNames //
-CREATE PROCEDURE GetCountryNames()
-BEGIN
-  SELECT *
-  FROM Country;
-END;//
-delimiter ;
