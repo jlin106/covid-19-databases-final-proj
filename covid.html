@@ -4,6 +4,10 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <?php
+      include 'open.php';
+      $countries = $mysqli->query("SELECT name FROM Country");
+    ?>
     <h2> Covid-19 Data </h2>
     <div class="container row">
       <h3> Option 1: Query by date and sorted attribute </h3>
@@ -67,11 +71,9 @@
           <label for="country">Select one country of interest:</label>
           <select id="country" name="country">
             <?php
-              include 'open.php';
-              $countries = $mysqli->query("SELECT name FROM Country");
               while ($rows = $countries->fetch_assoc()) {
                 $country_name = $rows['name'];
-                echo "<option value='$country_name'>$country_name</option>";
+                echo <option value='$country_name'>$country_name</option>';
               }
             ?>
           </select>
@@ -81,4 +83,3 @@
     </div>
   </body>
 </html>
-
