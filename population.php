@@ -20,9 +20,12 @@
                  echo "<option value='$country_name'>$country_name</option>";
                }
              ?>
-             <label for="country">Select population data:</label>
+	     </select>
+	     <br>
+	     <br>
+             <label for="pop_atrributes">Select population data:</label>
              <br>
-             <select id="pop_attribute" name="pop_attribute" multiple>
+             <select id="pop_attributes" name="pop_attributes" multiple>
                <option value="estPopSize">Estimated Population Size</option>
                <option value="popDensity">Population Density</option>
                <option value="rateIncrease">Population Rate of Increase</option>
