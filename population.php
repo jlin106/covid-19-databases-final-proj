@@ -42,48 +42,18 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 2: Query by date and country </h3>
+         <h3> Option 2:</h3>
          <div class="column left">
-           <form action="covid_by_date.php" method="post">
-             <label for="covid_date">Enter date (01/22/2020 to 04/12/2020):</label>
-             <br>
-             <input type="date" id="covid_date" name="covid_date"
-                    min="2020-01-22" max="2020-04-12">
-             <br>
-             <br>
-             <label for="country">Select country/countries of interest:</label>
-             <select id="country" name="country" multiple>
-               <?php
-                 $result = $mysqli->query("SELECT * FROM Country");
-                 while ($row = $result->fetch_assoc()) {
-                               unset($countryId, $name);
-                               $id = $row['countryId'];
-                               $name = $row['name'];
-                               echo '<option value="'.$id.'">'.$name.'</option>';
-                             }
-               ?>
-             </select>
+           <form action="" method="post">
              <input type="submit" value="Submit">
            </form>
          </div>
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3: Time series by country</h3>
+         <h3> Option 3:</h3>
          <div class="column left">
-           <form action="covid_by_country.php" method="post">
-             <label for="country">Select one country of interest:</label>
-             <select id="country" name="country">
-               <?php
-                 $result = $mysqli->query("SELECT * FROM Country");
-                 while ($row = $result->fetch_assoc()) {
-                               unset($countryId, $name);
-                               $id = $row['countryId'];
-                               $name = $row['name'];
-                               echo '<option value="'.$id.'">'.$name.'</option>';
-                             }
-               ?>
-             </select>
+           <form action="" method="post">
              <input type="submit" value="Submit">
            </form>
          </div>
