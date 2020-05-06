@@ -3,9 +3,6 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <?php
-    include 'open.php';
-  ?>
   <body>
     <h2> Covid-19 Data </h2>
     <div class="container row">
@@ -42,7 +39,8 @@
           <label for="country">Select country/countries of interest:</label>
           <select id="country" name="country" multiple>
             <?php
-              if ($mysqli->multi_query("CALL GetCountryNames;")) {
+              include 'open.php';
+              if ($mysqli->multi_query("CALL GetCountryNames();")) {
                 if ($result = $mysqli->store_result()) {
                     while ($row = $result->fetch_assoc()) {
                                   unset($countryId, $name);
@@ -69,13 +67,12 @@
           <label for="country">Select one country of interest:</label>
           <select id="country" name="country">
             <?php
-              $result = $mysqli->query("SELECT * FROM Country");
-              while ($row = $result->fetch_assoc()) {
-                            unset($countryId, $name);
-                            $id = $row['countryId'];
-                            $name = $row['name'];
-                            echo '<option value="'.$id.'">'.$name.'</option>';
-                          }
+              include 'open.php';
+              $countries = $mysqli->query("SELECT name FROM Country");
+              while ($rows = $countries->fetch_assoc()) {
+                $country_name = $rows['name'];
+                echo "<option value='$country_name'>$country_name</option>";
+              }
             ?>
           </select>
           <input type="submit" value="Submit">
@@ -83,7 +80,5 @@
       </div>
     </div>
   </body>
-  <?php
-    mysqli_close($mysqli);
-  ?>
 </html>
+
