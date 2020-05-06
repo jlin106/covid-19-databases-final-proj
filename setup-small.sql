@@ -111,7 +111,7 @@ CREATE TABLE ExportsTo_small (
 
 LOAD DATA LOCAL INFILE './small_relation_data/country-small.txt'
  INTO TABLE Country_small
- FIELDS TERMINATED BY ' '
+ FIELDS TERMINATED BY '/'
  IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE './small_relation_data/dailyCOVID19-small.txt'
@@ -144,7 +144,7 @@ LOAD DATA LOCAL INFILE './small_relation_data/education-small.txt'
  primaryEdPercent = nullif(@vprimaryEdPercent,'NULL'),
  secondaryEdPercent = nullif(@vsecondaryEdPercent,'NULL'),
  tertiaryEdPercent = nullif(@vtertiaryEdPercent,'NULL');
- 
+
 LOAD DATA LOCAL INFILE './small_relation_data/laborForce-small.txt'
  INTO TABLE LaborForce_small
  FIELDS TERMINATED BY ' '
@@ -162,7 +162,7 @@ LOAD DATA LOCAL INFILE './small_relation_data/travel-small.txt'
  INTO TABLE Travel_small
  FIELDS TERMINATED BY ','
  IGNORE 1 LINES
- (countryId, @vmigrantPercentOfPop, @vnumRefugeesAndAsylum, 
+ (countryId, @vmigrantPercentOfPop, @vnumRefugeesAndAsylum,
    @vtourismExp, @vnumTourists)
  SET
  migrantPercentOfPop = nullif(@vmigrantPercentOfPop,'NULL'),

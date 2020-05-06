@@ -111,7 +111,7 @@ CREATE TABLE ExportsTo (
 
 LOAD DATA LOCAL INFILE './full_relation_data/country.txt'
  INTO TABLE Country
- FIELDS TERMINATED BY ' '
+ FIELDS TERMINATED BY '/'
  IGNORE 1 LINES;
 
 LOAD DATA LOCAL INFILE './full_relation_data/laborForce.txt'
