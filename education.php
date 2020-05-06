@@ -23,7 +23,7 @@
          </select>
          <br>
          <br>
-             <label for="education_atrributes">Select population data:</label>
+             <label for="education_atrributes">Select education data:</label>
              <br>
              <select id="education_attributes" name="education_attributes" multiple>
 //             As % of Govt. Expenditure
