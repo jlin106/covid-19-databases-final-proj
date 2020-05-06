@@ -162,7 +162,7 @@ LOAD DATA LOCAL INFILE './full_relation_data/travel.txt'
  INTO TABLE Travel
  FIELDS TERMINATED BY ','
  IGNORE 1 LINES
- (countryId, @vmigrantPercentOfPop, @vnumRefugeesAndAsylum, 
+ (countryId, @vmigrantPercentOfPop, @vnumRefugeesAndAsylum,
    @vtourismExp, @vnumTourists)
  SET
  migrantPercentOfPop = nullif(@vmigrantPercentOfPop,'NULL'),
@@ -202,3 +202,14 @@ LOAD DATA LOCAL INFILE './full_relation_data/exportsTo.txt'
  INTO TABLE ExportsTo
  FIELDS TERMINATED BY ','
  IGNORE 1 LINES;
+
+ -- Procedure to get country names
+ delimiter //
+ DROP PROCEDURE IF EXISTS GetCountryNames //
+ CREATE PROCEDURE GetCountryNames
+ BEGIN
+   SELECT *
+   FROM Country;
+ END;
+ //
+ delimiter ;

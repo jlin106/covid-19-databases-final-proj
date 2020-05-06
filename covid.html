@@ -42,13 +42,19 @@
           <label for="country">Select country/countries of interest:</label>
           <select id="country" name="country" multiple>
             <?php
-              $result = $mysqli->query("SELECT * FROM Country");
-              while ($row = $result->fetch_assoc()) {
-                            unset($countryId, $name);
-                            $id = $row['countryId'];
-                            $name = $row['name'];
-                            echo '<option value="'.$id.'">'.$name.'</option>';
-                          }
+              if ($mysqli->multi_query("CALL GetCountryNames;")) {
+                if ($result = $mysqli->store_result()) {
+                    while ($row = $result->fetch_assoc()) {
+                                  unset($countryId, $name);
+                                  $id = $row['countryId'];
+                                  $name = $row['name'];
+                                  echo '<option value="'.$id.'">'.$name.'</option>';
+                                }
+                    $result->close();
+                }
+              } else {
+                printf("<br>Error: %s\n", $mysqli->error);
+              }
             ?>
           </select>
           <input type="submit" value="Submit">
@@ -77,4 +83,7 @@
       </div>
     </div>
   </body>
+  <?php
+    mysqli_close($mysqli);
+  ?>
 </html>
