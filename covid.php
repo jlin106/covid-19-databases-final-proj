@@ -38,7 +38,8 @@
         <br>
         <br>
         <label for="country">Select country/countries of interest:</label>
-        <select id="country" name="country" multiple>
+	<br>
+	<select id="country" name="country" multiple>
           <?php
             $countries = $mysqli->query("SELECT name FROM Country");
             while ($rows = $countries->fetch_assoc()) {
@@ -57,7 +58,8 @@
     <div class="column left">
       <form action="covid_by_country.php" method="post">
         <label for="country">Select one country of interest:</label>
-        <select id="country" name="country">
+	<br>
+	<select id="country" name="country">
           <?php
           $countries = $mysqli->query("SELECT name FROM Country");
             while ($rows = $countries->fetch_assoc()) {
