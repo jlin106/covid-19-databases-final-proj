@@ -29,10 +29,18 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 $covid_date = $_POST['covid_date'];
 $covid_attribute = $_POST['covid_attribute'];
 
+echo "<h3> Option 1: Query by date and sorted attribute </h3>";
+echo "<h4> Date: ";
+echo $covid_date;
+echo "<h4>";
+echo "<h4> Sorting By: ";
+echo $covid_attribute;
+echo "<h4>";
+
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
-if ($mysqli->multi_query("CALL CovidSortBy('".$covid_attribute."');")) {
+if ($mysqli->multi_query("CALL CovidSortBy('".$covid_date.",".$covid_attribute."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {
@@ -69,4 +77,3 @@ mysqli_close($mysqli);
 
 ?>
 </body>
-

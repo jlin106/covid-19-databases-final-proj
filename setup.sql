@@ -205,11 +205,11 @@ LOAD DATA LOCAL INFILE './full_relation_data/exportsTo.txt'
 
 delimiter //
 DROP PROCEDURE IF EXISTS CovidSortBy //
-CREATE PROCEDURE CovidSortBy(IN covid_attribute VARCHAR(40))
+CREATE PROCEDURE CovidSortBy(IN covid_date DATE, covid_attribute VARCHAR(40))
 BEGIN
 SELECT countryId, numConfirmed, numDeaths, numRecovered
 FROM DailyCOVID19Reports
-WHERE date = '02-23-20'
+WHERE date = covid_date
 ORDER BY covid_attribute;
 END;
 //
