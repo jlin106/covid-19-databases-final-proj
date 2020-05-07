@@ -3,42 +3,42 @@
 </head>
 <body>
 <?php
-//
-//
-// function outputResultsTableHeader() {
-//    echo "<tr>";
-//    echo "<th>countryId</th>";
-//    echo "<th>estPopSize</th>";
-//    echo "<th>popDensity</th>";
-//    echo "<th>rateIncrease</th>";
-//    echo "<th>lifeExpectancy</th>";
-//    echo "<th>mortalityRate</th>";
-//    echo "<th>fertilityRate</th>";
-//    echo "</tr>";
-// }
-//
-// function getIDsFromCountries($country_names)
-//   $ids_array = array();
-//   $ids = $mysqli->query("SELECT countryId FROM Country WHERE name IN ('$countries_list');");
-//   while ($rows = $ids>fetch_assoc()) {
-//     $countryId = $rows['countryId'];
-//     array_push($ids_array, $countryId)
-//   }
-//   return $ids_array;
-// }
-//
-//
-// // Open a database connection
-// include 'open.php';
-//
-// // Configure error reporting settings
-// ini_set('error_reporting', E_ALL); // report errors of all types
-// ini_set('display_errors', true);   // report errors to screen (don't hide from user)
-//
-// // Collect the data input posted here from the calling page
-// // The associative array called S_POST stores data using names as indices
-// $countries = $_POST['countries'];
-// $attributes = $_POST['pop_attributes'];
+
+
+function outputResultsTableHeader() {
+   echo "<tr>";
+   echo "<th>countryId</th>";
+   echo "<th>estPopSize</th>";
+   echo "<th>popDensity</th>";
+   echo "<th>rateIncrease</th>";
+   echo "<th>lifeExpectancy</th>";
+   echo "<th>mortalityRate</th>";
+   echo "<th>fertilityRate</th>";
+   echo "</tr>";
+}
+
+function getIDsFromCountries($country_names)
+  $ids_array = array();
+  $ids = $mysqli->query("SELECT countryId FROM Country WHERE name IN ('$countries_list');");
+  while ($rows = $ids>fetch_assoc()) {
+    $countryId = $rows['countryId'];
+    array_push($ids_array, $countryId)
+  }
+  return $ids_array;
+}
+
+
+// Open a database connection
+include 'open.php';
+
+// Configure error reporting settings
+ini_set('error_reporting', E_ALL); // report errors of all types
+ini_set('display_errors', true);   // report errors to screen (don't hide from user)
+
+// Collect the data input posted here from the calling page
+// The associative array called S_POST stores data using names as indices
+$countries = $_POST['countries'];
+$attributes = $_POST['pop_attributes'];
 
 // $countries_list = $mysqli->real_escape_string(implode(', ', $countries));
 // $country_ids = getIDsFromCountries($countries_list);
