@@ -9,7 +9,7 @@
   <div class="container row">
     <h3> Option 1: Query by date and sorted attribute </h3>
     <div class="column left">
-      <form action="covid_by_date.php" method="post">
+      <form action="covid_1.php" method="post">
         <label for="covid_date">Enter date (01/22/2020 to 04/12/2020):</label>
         <br>
         <input type="date" id="covid_date" name="covid_date"
@@ -30,7 +30,7 @@
   <div class="container row">
     <h3> Option 2: Query by date and country </h3>
     <div class="column left">
-      <form action="covid_by_date.php" method="post">
+      <form action="covid_2.php" method="post">
         <label for="covid_date">Enter date (01/22/2020 to 04/12/2020):</label>
         <br>
         <input type="date" id="covid_date" name="covid_date"
@@ -56,7 +56,7 @@
   <div class="container row">
     <h3> Option 3: Time series by country</h3>
     <div class="column left">
-      <form action="covid_by_country.php" method="post">
+      <form action="covid_3.php" method="post">
         <label for="country">Select one country of interest:</label>
 	      <br>
 	      <select id="country" name="country">
