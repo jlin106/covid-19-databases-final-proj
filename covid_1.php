@@ -27,7 +27,7 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 // Collect the data input posted here from the calling page
 // The associative array called S_POST stores data using names as indices
 $covid_date = $_POST['covid_date'];
-$covid_attribute = $_POST['covid_attribute']
+$covid_attribute = $_POST['covid_attribute'];
 
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
@@ -69,3 +69,4 @@ mysqli_close($mysqli);
 
 ?>
 </body>
+
