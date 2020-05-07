@@ -207,11 +207,10 @@ delimiter //
 DROP PROCEDURE IF EXISTS CovidSortBy //
 CREATE PROCEDURE CovidSortBy(IN covid_attribute VARCHAR(40))
 BEGIN
-IF EXISTS(SELECT SSN FROM Rawscores WHERE SSN=ss) THEN
 SELECT countryId, numConfirmed, numDeaths, numRecovered
 FROM DailyCOVID19Reports
 WHERE date = '02-23-20'
-ORDER BY covid_attribute
+ORDER BY covid_attribute;
 END;
 //
 delimiter ;
