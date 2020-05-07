@@ -37,8 +37,8 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 
 // Collect the data input posted here from the calling page
 // The associative array called S_POST stores data using names as indices
-$countries = $_POST['countries'];
-$attributes = $_POST['pop_attributes'];
+// $countries = $_POST['countries'];
+// $attributes = $_POST['pop_attributes'];
 
 // $countries_list = $mysqli->real_escape_string(implode(', ', $countries));
 // $country_ids = getIDsFromCountries($countries_list);
