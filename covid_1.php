@@ -26,9 +26,7 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 
 // Collect the data input posted here from the calling page
 // The associative array called S_POST stores data using names as indices
-$date = $_POST['covid_date'];
-$date_format = date("m-d-Y", strtotime($date));
-$covid_date = substr($date_format, 0, -2);
+$covid_date = $_POST['covid_date'];
 $covid_attribute = $_POST['covid_attribute'];
 
 echo "<h3> Option 1: Query by date and sorted attribute </h3>";
