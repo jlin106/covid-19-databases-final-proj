@@ -7,7 +7,7 @@
 
 function outputResultsTableHeader() {
    echo "<tr>";
-   echo "<th> Country Id </th>";
+   echo "<th> Country Name </th>";
    echo "<th> Number of Confirmed Cases </th>";
    echo "<th> Number of Deaths </th>";
    echo "<th> Number of Recovered Cases </th>";
@@ -27,7 +27,7 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 // Collect the data input posted here from the calling page
 // The associative array called S_POST stores data using names as indices
 $date = $_POST['covid_date'];
-$date_format = date("m-d-Y", strtotime($date)); 
+$date_format = date("m-d-Y", strtotime($date));
 $covid_date = substr($date_format, 0, -2);
 $covid_attribute = $_POST['covid_attribute'];
 
