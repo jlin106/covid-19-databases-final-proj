@@ -210,19 +210,16 @@ BEGIN
   IF covid_attribute = 'numConfirmed' THEN
     SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
     FROM DailyCOVID19Reports, Country
-    WHERE DailyCOVID19Reports.countryId = Country.countryId, date = covid_date
     WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
     ORDER BY numConfirmed;
   ELSEIF covid_attribute = 'numDeaths' THEN
     SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
     FROM DailyCOVID19Reports, Country
-    WHERE DailyCOVID19Reports.countryId = Country.countryId, date = covid_date
     WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
     ORDER BY numDeaths;
   ELSE
     SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
     FROM DailyCOVID19Reports, Country
-    WHERE DailyCOVID19Reports.countryId = Country.countryId, date = covid_date
     WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
     ORDER BY numRecovered;
   END IF;
