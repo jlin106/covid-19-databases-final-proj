@@ -26,7 +26,9 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 
 // Collect the data input posted here from the calling page
 // The associative array called S_POST stores data using names as indices
-$covid_date = $_POST['covid_date'];
+$date = $_POST['covid_date'];
+$date_format = date("m-d-Y", strtotime($date)); 
+$covid_date = substr($date_format, 0, -2);
 $covid_attribute = $_POST['covid_attribute'];
 
 echo "<h3> Option 1: Query by date and sorted attribute </h3>";
@@ -40,7 +42,7 @@ echo "<h4>";
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
-if ($mysqli->multi_query("CALL CovidSortBy('".$covid_date.",".$covid_attribute."');")) {
+if ($mysqli->multi_query("CALL CovidSortBy('".$covid_date."','".$covid_attribute."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {
