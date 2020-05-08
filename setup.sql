@@ -211,17 +211,17 @@ BEGIN
     SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
     FROM DailyCOVID19Reports, Country
     WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-    ORDER BY numConfirmed;
+    ORDER BY numConfirmed DESC;
   ELSEIF covid_attribute = 'numDeaths' THEN
     SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
     FROM DailyCOVID19Reports, Country
     WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-    ORDER BY numDeaths;
+    ORDER BY numDeaths DESC;
   ELSE
     SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
     FROM DailyCOVID19Reports, Country
     WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-    ORDER BY numRecovered;
+    ORDER BY numRecovered DESC;
   END IF;
 END;
 //
