@@ -207,10 +207,10 @@ delimiter //
 DROP PROCEDURE IF EXISTS CovidSortBy //
 CREATE PROCEDURE CovidSortBy(IN covid_date VARCHAR(40), covid_attribute VARCHAR(40))
 BEGIN
-SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
-FROM DailyCOVID19Reports, Country
-WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-ORDER BY covid_attribute;
+  SET @sql = CONCAT('SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered FROM DailyCOVID19Reports, Country WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = ', covid_date, ' ORDER BY ', covid_attribute);
+  PREPARE stmt FROM @sql;
+  EXECUTE stmt;
+  DEALLOCATE PREPARE stmt;
 END;
 //
 delimiter ;
