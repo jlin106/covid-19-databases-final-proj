@@ -228,7 +228,7 @@ END;
 DROP PROCEDURE IF EXISTS CovidTimeSeries //
 CREATE PROCEDURE CovidTimeSeries(IN country VARCHAR(40))
 BEGIN
-  SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
+  SELECT DailyCOVID19Reports.date, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
   FROM DailyCOVID19Reports, Country
   WHERE DailyCOVID19Reports.countryId = Country.countryId AND Country.name = country;
 END;
