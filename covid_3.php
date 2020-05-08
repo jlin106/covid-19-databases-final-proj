@@ -7,7 +7,7 @@
 
 function outputResultsTableHeader() {
    echo "<tr>";
-   echo "<th> Country Name </th>";
+   echo "<th> Date </th>";
    echo "<th> Number of Confirmed Cases </th>";
    echo "<th> Number of Deaths </th>";
    echo "<th> Number of Recovered Cases </th>";
@@ -26,21 +26,17 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 
 // Collect the data input posted here from the calling page
 // The associative array called S_POST stores data using names as indices
-$covid_date = $_POST['covid_date'];
-$covid_attribute = $_POST['covid_attribute'];
+$country = $_POST['country'];
 
-echo "<h2> Option 1: Query by date and sorted attribute </h2>";
-echo "<h4> Date: ";
-echo $covid_date;
-echo "</h4>";
-echo "<h4> Sorting By: ";
-echo $covid_attribute;
+echo "<h2> Option 3: Time series by country </h2>";
+echo "<h4> Country: ";
+echo $country;
 echo "</h4>";
 
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
-if ($mysqli->multi_query("CALL CovidSortBy('".$covid_date."','".$covid_attribute."');")) {
+if ($mysqli->multi_query("CALL CovidTimeSeries('".$country."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {
