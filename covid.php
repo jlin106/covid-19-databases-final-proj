@@ -10,10 +10,10 @@
     <h3> Option 1: Query by date and sorted attribute </h3>
     <div class="column left">
       <form action="covid_1.php" method="post">
-        <label for="covid_date">Enter date (01/22/2020 to 04/12/2020):</label>
+        <label for="covid_date">Enter date (01/22/2020 to 05/08/2020):</label>
         <br>
         <input type="date" id="covid_date" name="covid_date"
-               min="2020-01-22" max="2020-04-12">
+               min="2020-01-22" max="2020-05-08">
         <br>
         <br>
         <label for="country">Sort by attribute:</label>
@@ -31,10 +31,10 @@
     <h3> Option 2: Query by date and country </h3>
     <div class="column left">
       <form action="covid_2.php" method="post">
-        <label for="covid_date">Enter date (01/22/2020 to 04/12/2020):</label>
+        <label for="covid_date">Enter date (01/22/2020 to 05/08/2020):</label>
         <br>
         <input type="date" id="covid_date" name="covid_date"
-               min="2020-01-22" max="2020-04-12">
+               min="2020-01-22" max="2020-05-08">
         <br>
         <br>
         <label for="country">Select country/countries of interest:</label>

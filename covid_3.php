@@ -1,5 +1,6 @@
 <head>
  <title>Option1</title>
+ <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <?php
@@ -29,9 +30,10 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 $country = $_POST['country'];
 
 echo "<h2> Option 3: Time series by country </h2>";
-echo "<h4> Country: ";
+echo "<div class="container row">";
+echo "<h3> Country: ";
 echo $country;
-echo "</h4>";
+echo "</h3>";
 
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
@@ -69,7 +71,7 @@ if ($mysqli->multi_query("CALL CovidTimeSeries('".$country."');")) {
 
 // Close the connection created above by including 'open.php' at top of this file
 mysqli_close($mysqli);
-
+echo "</div>";
 
 ?>
 </body>

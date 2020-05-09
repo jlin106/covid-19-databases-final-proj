@@ -1,5 +1,6 @@
 <head>
  <title>Option1</title>
+ <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <?php
@@ -30,12 +31,13 @@ $covid_date = $_POST['covid_date'];
 $covid_attribute = $_POST['covid_attribute'];
 
 echo "<h2> Option 1: Query by date and sorted attribute </h2>";
-echo "<h4> Date: ";
+echo "<div class="container row">";
+echo "<h3> Date: ";
 echo $covid_date;
-echo "</h4>";
-echo "<h4> Sorting By: ";
+echo "</h3>";
+echo "<h3> Sorting By: ";
 echo $covid_attribute;
-echo "</h4>";
+echo "</h3>";
 
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
@@ -73,6 +75,7 @@ if ($mysqli->multi_query("CALL CovidSortBy('".$covid_date."','".$covid_attribute
 
 // Close the connection created above by including 'open.php' at top of this file
 mysqli_close($mysqli);
+echo "</div>";
 
 
 ?>
