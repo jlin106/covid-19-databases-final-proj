@@ -1,5 +1,5 @@
 <head>
- <title>Option1</title>
+ <title>Option2</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -15,17 +15,6 @@ function outputResultsTableHeader() {
    echo "</tr>";
 }
 
-function getIDsFromCountries($country_names)
-  $ids_array = array();
-  $ids = $mysqli->query("SELECT countryId FROM Country WHERE name IN ('$countries_list');");
-  while ($rows = $ids>fetch_assoc()) {
-    $countryId = $rows['countryId'];
-    array_push($ids_array, $countryId)
-  }
-  return $ids_array;
-}
-
-
 // Open a database connection
 include 'open.php';
 
@@ -38,29 +27,17 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 $countries = $_POST['country'];
 $covid_date = $_POST['covid_date'];
 
-$countries_list = $mysqli->real_escape_string(implode(', ', $countries));
-$country_ids = getIDsFromCountries($countries_list);
-$country_ids_list = $mysqli->real_escape_string(implode(', ', $country_ids));
+$countries_list = implode(', ', $countries);
 
 echo "<h2> Option 2: Query by date and country </h2>";
 echo "<div class='container row'>";
 echo "<h3> Date: ";
 echo $covid_date;
 echo "</h3>";
-echo "<h3> Country: ";
-echo $country;
-echo "</h3>";
-echo "<h3> Country list: ";
+echo "<h3> Countries of Interest: ";
 echo $countries_list;
 echo "</h3>";
-echo "<h3> Country ids: ";
-echo $country_ids;
-echo "</h3>";
-echo "<h3> Country ids list: ";
-echo $country_ids_list;
-echo "</h3>";
 
-/*
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
@@ -94,7 +71,7 @@ if ($mysqli->multi_query("CALL CovidTimeSeries('".$country."');")) {
 } else {
        printf("<br>Error: %s\n", $mysqli->error);
 }
-*/
+
 // Close the connection created above by including 'open.php' at top of this file
 mysqli_close($mysqli);
 echo "</div>";

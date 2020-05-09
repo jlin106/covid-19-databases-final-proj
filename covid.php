@@ -37,9 +37,9 @@
                min="2020-01-22" max="2020-05-08">
         <br>
         <br>
-        <label for="country">Select country/countries of interest:</label>
+        <label for="country[]">Select country/countries of interest:</label>
 	      <br>
-	      <select id="country" name="country" multiple>
+	      <select id="country[]" name="country[]" multiple>
           <?php
             $countries = $mysqli->query("SELECT name FROM Country");
             while ($rows = $countries->fetch_assoc()) {
