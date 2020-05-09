@@ -31,7 +31,7 @@ $covid_date = $_POST['covid_date'];
 $covid_attribute = $_POST['covid_attribute'];
 
 echo "<h2> Option 1: Query by date and sorted attribute </h2>";
-echo "<div class="container row">";
+echo "<div class='container row'>";
 echo "<h3> Date: ";
 echo $covid_date;
 echo "</h3>";

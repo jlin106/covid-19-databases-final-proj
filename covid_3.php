@@ -30,7 +30,7 @@ ini_set('display_errors', true);   // report errors to screen (don't hide from u
 $country = $_POST['country'];
 
 echo "<h2> Option 3: Time series by country </h2>";
-echo "<div class="container row">";
+echo "<div class='container row'>";
 echo "<h3> Country: ";
 echo $country;
 echo "</h3>";

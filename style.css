@@ -37,11 +37,11 @@ input[type=submit]:hover {
 }
 
 .left {
-  width: 25%;
+  width: 50%;
 }
 
 .right {
-  width: 75%;
+  width: 50%;
 }
 
 .row:after {
