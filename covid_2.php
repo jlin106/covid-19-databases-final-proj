@@ -47,9 +47,9 @@ foreach ($countries as $country) {
   // Results of first statement are retrieved via $mysqli->store_result()
   // from which we can call ->fetch_row() to see successive rows
   if ($mysqli->multi_query("CALL CovidByCountry('".$covid_date."','".$country."');")) {
-     // Check if a result was returned after the call
+  // Check if a result was returned after the call
      if ($result = $mysqli->store_result()) {
-         $row = $result->fetch_row();
+	 $row = $result->fetch_row();
          // Output each row of resulting relation
          do {
              echo "<tr>";
@@ -58,13 +58,23 @@ foreach ($countries as $country) {
              }
              echo "</tr>";
          } while($row = $result->fetch_row());
-         $result->close();
+	 $result->close();
+	 $mysqli->next_result();
+     } else {
+	echo "<tr>";
+	echo "<td>";
+	echo $country;
+	echo "</td>";
+	echo "<td> No data </td>";
+	echo "<td> No data </td>";
+	echo "<td> No data </td>";
+        echo "</tr>";
      }
   // The "multi_query" call did not end successfully, so report the error
   // This might indicate we've called a stored procedure that does not exist,
   // or that database connection is broken
   } else {
-         printf("<br>Error: %s\n", $mysqli->error);
+     printf("<br>Error: %s\n", $mysqli->error);
   }
 }
 echo "</table>";
@@ -75,3 +85,4 @@ echo "</div>";
 
 ?>
 </body>
+
