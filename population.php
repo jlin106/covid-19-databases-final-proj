@@ -10,9 +10,9 @@
          <h3> Option 1: Population data from specified countries </h3>
          <div class="column left">
            <form action="population_1.php" method="post">
-             <label for="country">Select country/countries of interest:</label>
+             <label for="country[]">Select country/countries of interest:</label>
              <br>
-             <select id="country" name="country" multiple>
+             <select id="country[]" name="country[]" multiple>
              <?php
                $countries = $mysqli->query("SELECT name FROM Country");
                while ($rows = $countries->fetch_assoc()) {
