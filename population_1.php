@@ -83,7 +83,6 @@ foreach ($countries as $country) {
           echo "</tr>";
         }
         $result->close();
-        $mysqli->next_result();
      }
   // The "multi_query" call did not end successfully, so report the error
   // This might indicate we've called a stored procedure that does not exist,
