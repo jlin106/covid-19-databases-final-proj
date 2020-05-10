@@ -26,6 +26,7 @@ function outputResultsTableHeader() {
 // The call below relies on files named open.php and dbase-conf.php
 // It initializes a variable named $mysqli, which we use below
 include 'open.php';
+include 'ChromePhp.php';
 
 // Configure error reporting settings
 ini_set('error_reporting', E_ALL); // report errors of all types
@@ -48,6 +49,7 @@ outputResultsTableHeader();
 
 // Retrieving each selected option
 foreach ($countries as $country) {
+  ChromePhp::log($country);
   // It returns true if first statement executed successfully; false otherwise.
   // Results of first statement are retrieved via $mysqli->store_result()
   // from which we can call ->fetch_row() to see successive rows
