@@ -70,7 +70,6 @@ foreach ($countries as $country) {
           echo "<td> No data </td>";
           echo "<td> No data </td>";
           echo "<td> No data </td>";
-          echo "<td> No data </td>";
           echo "</tr>";
         // Otherwise, we received real results, so output table
         } else {
