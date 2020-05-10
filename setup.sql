@@ -241,4 +241,18 @@ BEGIN
   WHERE DailyCOVID19Reports.countryId = Country.countryId AND Country.name = country;
 END;
 //
+DROP PROCEDURE IF EXISTS PopulationByCountry //
+CREATE PROCEDURE PopulationByCountry(country VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Population.estPopSize,
+   Population.popDensity,
+   Population.rateIncrease,
+   Population.lifeExpectancy,
+   Population.mortalityRate,
+   Population.fertilityRate
+  FROM Population, Country
+  WHERE Population.countryId = Country.countryId;
+END;
+//
 delimiter ;

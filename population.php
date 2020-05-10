@@ -22,20 +22,6 @@
              ?>
       	     </select>
       	     <br>
-      	     <br>
-             <label for="pop_attributes">Select population data:</label>
-             <br>
-             <select id="pop_attributes" name="pop_attributes" multiple>
-               <option value="estPopSize">Estimated Population Size</option>
-               <option value="popDensity">Population Density</option>
-               <option value="rateIncrease">Population Rate of Increase</option>
-               <option value="lifeExpectancy">Life Expectancy</option>
-               <option value="mortalityRate">Mortality Rate</option>
-               <option value="fertilityRate">Fertility Rate</option>
-               <option value="numConfirmed">Number of Confimed Cases</option>
-               <option value="numDeaths">Number of Deaths</option>
-               <option value="numRecovered">Number of Recovered Cases</option>
-             </select>
              <input type="submit" value="Submit">
            </form>
          </div>
