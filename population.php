@@ -10,17 +10,17 @@
          <h3> Option 1: Population data from specified countries </h3>
          <div class="column left">
            <form action="population_1.php" method="post">
-             <label for="country[]">Select country/countries of interest:</label>
-             <br>
-             <select id="country[]" name="country[]" multiple>
-             <?php
-               $countries = $mysqli->query("SELECT name FROM Country");
-               while ($rows = $countries->fetch_assoc()) {
-                 $country_name = $rows['name'];
-                 echo "<option value='$country_name'>$country_name</option>";
-               }
-             ?>
-      	     </select>
+            <label for="country[]">Select country/countries of interest:</label>
+     	      <br>
+     	      <select id="country[]" name="country[]" multiple>
+               <?php
+                 $countries = $mysqli->query("SELECT name FROM Country");
+                 while ($rows = $countries->fetch_assoc()) {
+                   $country_name = $rows['name'];
+                   echo "<option value='$country_name'>$country_name</option>";
+                 }
+               ?>
+             </select>
       	     <br>
              <input type="submit" value="Submit">
            </form>

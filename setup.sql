@@ -250,9 +250,12 @@ BEGIN
    Population.rateIncrease,
    Population.lifeExpectancy,
    Population.mortalityRate,
-   Population.fertilityRate
-  FROM Population, Country
-  WHERE Population.countryId = Country.countryId;
+   Population.fertilityRate,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Population, Country, DailyCOVID19Reports
+  WHERE Population.countryId = Country.countryId AND DailyCOVID19Reports.countryId = Country.countryId;
 END;
 //
 delimiter ;

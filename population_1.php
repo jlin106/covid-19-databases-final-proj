@@ -8,6 +8,7 @@
 
 function outputResultsTableHeader() {
    echo "<tr>";
+   echo "<th> Country </th>"
    echo "<th> Estimated Population Size<br />(millions) </th>";
    echo "<th> Population Density<br />(per km<sup>2</sup>) </th>";
    echo "<th> Population Rate of Increase<br />(annual %) </th>";
@@ -60,6 +61,7 @@ foreach ($countries as $country) {
           echo "<td>";
           echo $country;
           echo "</td>";
+          echo "<td> No data </td>";
           echo "<td> No data </td>";
           echo "<td> No data </td>";
           echo "<td> No data </td>";
