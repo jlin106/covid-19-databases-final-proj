@@ -33,8 +33,8 @@ echo "<h2> Option 1: Trade data from specified countries </h2>";
 // Retrieving each selected option
 foreach ($countries as $country) {
   echo "<h3>Major Trading Partners for: ";
-  echo "<div class='container row'>";
   echo $country;
+  echo "<div class='container row'>";
   echo "<h4>Imports From...</h4>";
   // It returns true if first statement executed successfully; false otherwise.
   // Results of first statement are retrieved via $mysqli->store_result()
