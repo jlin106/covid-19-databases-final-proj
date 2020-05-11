@@ -351,5 +351,63 @@ BEGIN
     AND DailyCOVID19Reports.date = '2020-05-08'
      AND Country.name = country;
 END;
+DROP PROCEDURE IF EXISTS PopulationCovid(IN topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  IF covid_attribute = 'numConfirmed' THEN
+    SELECT Country.name,
+     Population.estPopSize,
+     Population.popDensity,
+     Population.rateIncrease,
+     Population.lifeExpectancy,
+     Population.mortalityRate,
+     Population.fertilityRate,
+     DailyCOVID19Reports.numConfirmed,
+     DailyCOVID19Reports.numDeaths,
+     DailyCOVID19Reports.numRecovered
+    FROM Population, Country, DailyCOVID19Reports
+    WHERE Population.countryId = Country.countryId
+     AND DailyCOVID19Reports.countryId = Country.countryId
+      AND DailyCOVID19Reports.date = '2020-05-08'
+    ORDER BY
+    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numConfirmed END DESC
+    LIMIT num;
+  ELSEIF covid_attribute = 'numDeaths' THEN
+    SELECT Country.name,
+     Population.estPopSize,
+     Population.popDensity,
+     Population.rateIncrease,
+     Population.lifeExpectancy,
+     Population.mortalityRate,
+     Population.fertilityRate,
+     DailyCOVID19Reports.numConfirmed,
+     DailyCOVID19Reports.numDeaths,
+     DailyCOVID19Reports.numRecovered
+    FROM Population, Country, DailyCOVID19Reports
+    WHERE Population.countryId = Country.countryId
+     AND DailyCOVID19Reports.countryId = Country.countryId
+      AND DailyCOVID19Reports.date = '2020-05-08'
+    ORDER BY
+    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numDeaths END DESC
+    LIMIT num;
+  ELSE
+    SELECT Country.name,
+     Population.estPopSize,
+     Population.popDensity,
+     Population.rateIncrease,
+     Population.lifeExpectancy,
+     Population.mortalityRate,
+     Population.fertilityRate,
+     DailyCOVID19Reports.numConfirmed,
+     DailyCOVID19Reports.numDeaths,
+     DailyCOVID19Reports.numRecovered
+    FROM Population, Country, DailyCOVID19Reports
+    WHERE Population.countryId = Country.countryId
+     AND DailyCOVID19Reports.countryId = Country.countryId
+      AND DailyCOVID19Reports.date = '2020-05-08'
+    ORDER BY
+    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numConfirmed END DESC
+  LIMIT num;
+  END IF;
+END;
 //
 delimiter ;

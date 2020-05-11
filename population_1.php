@@ -37,7 +37,7 @@ $countries = $_POST['country'];
 $countries_list = implode(', ', $countries);
 
 
-echo "<h2> Option 2: Query population data by country </h2>";
+echo "<h2> Option 1: Query population data by country </h2>";
 echo "<div class='container row'>";
 echo "<h3> Countries of Interest: ";
 echo $countries_list;
