@@ -356,6 +356,7 @@ DROP PROCEDURE IF EXISTS PopulationCovid //
 CREATE PROCEDURE PopulationCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
 BEGIN
   IF attribute = 'numConfirmed' THEN
+  
     SELECT Country.name,
      Population.estPopSize,
      Population.popDensity,
@@ -366,15 +367,16 @@ BEGIN
      DailyCOVID19Reports.numConfirmed,
      DailyCOVID19Reports.numDeaths,
      DailyCOVID19Reports.numRecovered
+
     FROM Population, Country, DailyCOVID19Reports
     WHERE Population.countryId = Country.countryId
      AND DailyCOVID19Reports.countryId = Country.countryId
       AND DailyCOVID19Reports.date = '2020-05-08'
+
     ORDER BY
-    (CASE
-      WHEN topbottom = 'top' THEN DailyCOVID19Reports.numConfirmed DESC
-      ELSE DailyCOVID19Reports.numConfirmed ASC
-    END)
+    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numConfirmed END DESC,
+    CASE WHEN topbottom  = 'bottom' THEN DailyCOVID19Reports.numConfirmed END ASC
+
     LIMIT num;
   ELSEIF attribute = 'numDeaths' THEN
     SELECT Country.name,
