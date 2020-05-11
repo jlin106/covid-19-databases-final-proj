@@ -371,10 +371,10 @@ BEGIN
      AND DailyCOVID19Reports.countryId = Country.countryId
       AND DailyCOVID19Reports.date = '2020-05-08'
     ORDER BY
-    CASE
+    (CASE
       WHEN topbottom = 'top' THEN DailyCOVID19Reports.numConfirmed DESC
-      WHEN topbottom = 'bottom' THEN DailyCOVID19Reports.numConfirmed ASC
-    END;
+      ELSE DailyCOVID19Reports.numConfirmed ASC
+    END)
     LIMIT num;
   ELSEIF attribute = 'numDeaths' THEN
     SELECT Country.name,
@@ -392,10 +392,10 @@ BEGIN
      AND DailyCOVID19Reports.countryId = Country.countryId
       AND DailyCOVID19Reports.date = '2020-05-08'
     ORDER BY
-    CASE
+    (CASE
       WHEN topbottom = 'top' THEN DailyCOVID19Reports.numDeaths DESC
-      WHEN topbottom = 'bottom' THEN DailyCOVID19Reports.numDeathsEND ASC
-    END;
+      ELSE DailyCOVID19Reports.numDeaths ASC
+    END)
     LIMIT num;
   ELSE
     SELECT Country.name,
@@ -413,10 +413,10 @@ BEGIN
      AND DailyCOVID19Reports.countryId = Country.countryId
       AND DailyCOVID19Reports.date = '2020-05-08'
     ORDER BY
-    CASE
+    (CASE
       WHEN topbottom = 'top' THEN DailyCOVID19Reports.numRecovered DESC
-      WHEN topbottom = 'bottom' THEN DailyCOVID19Reports.numRecovered ASC
-    END;
+      ELSE DailyCOVID19Reports.numRecovered ASC
+    END)
   LIMIT num;
   END IF;
 END;
