@@ -32,9 +32,9 @@ echo "<h2> Option 1: Trade data from specified countries </h2>";
 
 // Retrieving each selected option
 foreach ($countries as $country) {
+  echo "<div class='container row'>";
   echo "<h3>Major Trading Partners for: ";
   echo $country;
-  echo "<div class='container row'>";
   echo "<h4>Imports From...</h4>";
   // It returns true if first statement executed successfully; false otherwise.
   // Results of first statement are retrieved via $mysqli->store_result()
@@ -77,7 +77,6 @@ foreach ($countries as $country) {
   } else {
      printf("<br>Error: %s\n", $mysqli->error);
   }
-  echo "<br>";
   echo "<h4>Exports To...</h4>";
   // It returns true if first statement executed successfully; false otherwise.
   // Results of first statement are retrieved via $mysqli->store_result()
@@ -121,6 +120,7 @@ foreach ($countries as $country) {
      printf("<br>Error: %s\n", $mysqli->error);
   }
   echo "</div>";
+  echo "<br>";
 }
 
 // Close the connection created above by including 'open.php' at top of this file
