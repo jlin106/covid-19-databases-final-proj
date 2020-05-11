@@ -257,7 +257,7 @@ BEGIN
   FROM Population, Country, DailyCOVID19Reports
   WHERE Population.countryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
-    AND DailyCOVID19Reports.date = '2020-05-08';
+    AND DailyCOVID19Reports.date = '2020-05-08'
      AND Country.name = country;
 END;
 //
