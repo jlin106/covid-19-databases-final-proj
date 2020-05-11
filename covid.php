@@ -8,8 +8,8 @@
   <h2> Covid-19 Data </h2>
   <div class="container row">
     <h3> Option 1: Query by date and sorted attribute </h3>
-    <h4> View Covid-19 statistics (number of confirmed cases, number of deaths,
-      number of recovered cases) on a certain date, sorted by a covid statistic </h4>
+    <p> View Covid-19 statistics (number of confirmed cases, number of deaths,
+      number of recovered cases) on a certain date, sorted by a covid statistic </p>
     <div class="column left">
       <form action="covid_1.php" method="post">
         <label for="covid_date">Enter date (01/22/2020 to 05/08/2020):</label>
@@ -31,8 +31,8 @@
   <br>
   <div class="container row">
     <h3> Option 2: Query by date and country </h3>
-    <h4> View Covid-19 statistics (number of confirmed cases, number of deaths,
-      number of recovered cases) of selected countries on a certain date </h4>
+    <p> View Covid-19 statistics (number of confirmed cases, number of deaths,
+      number of recovered cases) of selected countries on a certain date </p>
     <div class="column left">
       <form action="covid_2.php" method="post">
         <label for="covid_date">Enter date (01/22/2020 to 05/08/2020):</label>
@@ -59,8 +59,8 @@
   <br>
   <div class="container row">
     <h3> Option 3: Time series by country</h3>
-    <h4> View the selected country's time series of Covid-19 statistics
-      (number of confirmed cases, number of deaths, number of recovered cases)</h4>
+    <p> View the selected country's time series of Covid-19 statistics
+      (number of confirmed cases, number of deaths, number of recovered cases)</p>
     <div class="column left">
       <form action="covid_3.php" method="post">
         <label for="country">Select one country of interest:</label>
