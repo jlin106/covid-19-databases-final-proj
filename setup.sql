@@ -355,76 +355,31 @@ END;
 DROP PROCEDURE IF EXISTS PopulationCovid //
 CREATE PROCEDURE PopulationCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
 BEGIN
-  IF attribute = 'numConfirmed' THEN
+  SELECT Country.name,
+   Population.estPopSize,
+   Population.popDensity,
+   Population.rateIncrease,
+   Population.lifeExpectancy,
+   Population.mortalityRate,
+   Population.fertilityRate,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
 
-    SELECT Country.name,
-     Population.estPopSize,
-     Population.popDensity,
-     Population.rateIncrease,
-     Population.lifeExpectancy,
-     Population.mortalityRate,
-     Population.fertilityRate,
-     DailyCOVID19Reports.numConfirmed,
-     DailyCOVID19Reports.numDeaths,
-     DailyCOVID19Reports.numRecovered
+  FROM Population, Country, DailyCOVID19Reports
+  WHERE Population.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
 
-    FROM Population, Country, DailyCOVID19Reports
-    WHERE Population.countryId = Country.countryId
-     AND DailyCOVID19Reports.countryId = Country.countryId
-      AND DailyCOVID19Reports.date = '2020-05-08'
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numConfirmed END ASC
 
-    ORDER BY
-    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numConfirmed END DESC,
-    CASE WHEN topbottom  = 'bottom' THEN DailyCOVID19Reports.numConfirmed END ASC
-
-    LIMIT num;
-  ELSEIF attribute = 'numDeaths' THEN
-
-    SELECT Country.name,
-     Population.estPopSize,
-     Population.popDensity,
-     Population.rateIncrease,
-     Population.lifeExpectancy,
-     Population.mortalityRate,
-     Population.fertilityRate,
-     DailyCOVID19Reports.numConfirmed,
-     DailyCOVID19Reports.numDeaths,
-     DailyCOVID19Reports.numRecovered
-
-    FROM Population, Country, DailyCOVID19Reports
-    WHERE Population.countryId = Country.countryId
-     AND DailyCOVID19Reports.countryId = Country.countryId
-      AND DailyCOVID19Reports.date = '2020-05-08'
-
-    ORDER BY
-    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numDeaths END DESC,
-    CASE WHEN topbottom  = 'bottom' THEN DailyCOVID19Reports.numDeaths END ASC
-
-    LIMIT num;
-  ELSE
-
-    SELECT Country.name,
-     Population.estPopSize,
-     Population.popDensity,
-     Population.rateIncrease,
-     Population.lifeExpectancy,
-     Population.mortalityRate,
-     Population.fertilityRate,
-     DailyCOVID19Reports.numConfirmed,
-     DailyCOVID19Reports.numDeaths,
-     DailyCOVID19Reports.numRecovered
-
-    FROM Population, Country, DailyCOVID19Reports
-    WHERE Population.countryId = Country.countryId
-     AND DailyCOVID19Reports.countryId = Country.countryId
-      AND DailyCOVID19Reports.date = '2020-05-08'
-
-    ORDER BY
-    CASE WHEN topbottom = 'top' THEN DailyCOVID19Reports.numRecovered END DESC,
-    CASE WHEN topbottom  = 'bottom' THEN DailyCOVID19Reports.Recovered END ASC
-
-    LIMIT num;
-  END IF;
+  LIMIT num;
 END;
 //
 delimiter ;
