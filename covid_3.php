@@ -45,7 +45,7 @@ if ($mysqli->multi_query("CALL CovidTimeSeries('".$country."');")) {
        $row = $result->fetch_row();
        if (strcmp($row[0], '') == 0) {
          echo $country;
-         echo " has no COVID data!"
+         echo " has no COVID data!";
        } else {
          echo "<table border=\"1px solid black\">";
          // Output appropriate table header row
