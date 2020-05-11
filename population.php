@@ -30,7 +30,7 @@
        <div class="container row">
          <h3> Option 2: Population data sorted by COVID data</h3>
          <div class="column left">
-           <form action="population_2" method="post">
+           <form action="population_2.php" method="post">
              View <select id="topbottom" name="topbottom">
                <option value="top">top</option>
                <option value="bottom">bottom</option>
