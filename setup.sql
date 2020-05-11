@@ -540,4 +540,20 @@ BEGIN
     AND DailyCOVID19Reports.date = '2020-05-08';
 END;
 //
+DROP PROCEDURE IF EXISTS ExportsByCountry //
+CREATE PROCEDURE ExportsByCountry(country VARCHAR(40))
+BEGIN
+  SELECT countryId INTO @mainCountryId FROM Country WHERE name = country;
+  SELECT Country.name,
+   ExportsTo.percentExportOfTotalTrade,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM ExportsTo, Country, DailyCOVID19Reports
+  WHERE ExportsTo.countryId = @mainCountryId
+  AND ExportsTo.importFromCountryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08';
+END;
+//
 delimiter ;
