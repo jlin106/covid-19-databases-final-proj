@@ -63,7 +63,7 @@
        <br>
        <div class="container row">
          <h3> Option 3: Query sort based on Labor Force statistic </h3>
-         <p> Sort the data based on an Labor Force statistic and view the top few or bottom few countries' data. </p>
+         <p> Sort the data based on a Labor Force statistic and view the top few or bottom few countries' data. </p>
          <p> (Ex. View 5 countries' labor force data with the highest Labor Force Participation Rate) </p>
          <div class="column left">
            <form action="laborforce_3.php" method="post">

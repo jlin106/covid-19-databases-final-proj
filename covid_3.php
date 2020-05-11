@@ -1,5 +1,5 @@
 <head>
- <title>Option1</title>
+ <title>COVID Option 3</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>

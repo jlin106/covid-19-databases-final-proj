@@ -64,7 +64,7 @@
        <br>
        <div class="container row">
          <h3> Option 3: Query sort based on Population statistic </h3>
-         <p> Sort the data based on an Population statistic and view the top few or bottom few countries' data. </p>
+         <p> Sort the data based on a Population statistic and view the top few or bottom few countries' data. </p>
          <p> (Ex. View 5 countries' population data with the highest Estimated Population Size) </p>
          <div class="column left">
            <form action="population_3.php" method="post">

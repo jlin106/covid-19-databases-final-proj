@@ -62,7 +62,7 @@
        <br>
        <div class="container row">
          <h3> Option 3: Query sort based on GDP statistic </h3>
-         <p> Sort the data based on an GDP statistic and view the top few or bottom few countries' data. </p>
+         <p> Sort the data based on a GDP statistic and view the top few or bottom few countries' data. </p>
          <p> (Ex. View 5 countries' GDP data with the highest gdp) </p>
          <div class="column left">
            <form action="gdp_3.php" method="post">

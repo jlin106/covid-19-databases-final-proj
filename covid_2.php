@@ -1,5 +1,5 @@
 <head>
- <title>Option2</title>
+ <title>COVID Option 2</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -87,4 +87,3 @@ echo "</div>";
 
 ?>
 </body>
-

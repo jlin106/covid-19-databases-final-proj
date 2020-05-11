@@ -62,7 +62,7 @@
        <br>
        <div class="container row">
          <h3> Option 3: Query sort based on Travel statistic </h3>
-         <p> Sort the data based on an Travel statistic and view the top few or bottom few countries' data. </p>
+         <p> Sort the data based on a Travel statistic and view the top few or bottom few countries' data. </p>
          <p> (Ex. View 5 countries' travel data with the highest Toursim Expenditure) </p>
          <div class="column left">
            <form action="travel_3.php" method="post">
