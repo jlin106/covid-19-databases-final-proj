@@ -42,13 +42,12 @@ if ($mysqli->multi_query("CALL CovidTimeSeries('".$country."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {
-
-       echo "<table border=\"1px solid black\">";
        $row = $result->fetch_row();
        if (strcmp($row[0], '') == 0) {
          echo $country;
          echo " has no COVID data!"
        } else {
+         echo "<table border=\"1px solid black\">";
          // Output appropriate table header row
          outputResultsTableHeader();
 
