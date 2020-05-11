@@ -6,10 +6,13 @@
 ?>
 <body>
     <h2> Education and Covid-19 Data</h2>
-    <p> Education statistics: Total Public Expenditure on Education (% of govt. exp),
-       Government Expenditure on Primary Education (% of govt. exp. on education),
-       Government Expenditure on Secondary Education (% of govt. exp. on education),
-       Government Expenditure on Tertiary Education (% of govt. exp. on education)</p>
+    <p> Education statistics: </p>
+    <ul>
+      <li>Total Public Expenditure on Education (% of govt. exp)</li>
+      <li>Government Expenditure on Primary Education (% of govt. exp. on education)</li>
+      <li>Government Expenditure on Secondary Education (% of govt. exp. on education)</li>
+      <li>Government Expenditure on Tertiary Education (% of govt. exp. on education)</li>
+    </ul>
     <div class="container row">
          <h3> Option 1: Query by country </h3>
          <p> View Education statistics along with Covid-19 statistics of selected countries </p>
@@ -34,9 +37,8 @@
        <br>
        <div class="container row">
          <h3> Option 2: Query sort based on Covid-19 statistic </h3>
-         <p> Sort the data based on a Covid-19 statistic and view the top few or bottom
-           few countries' data. </p>
-         <p> (Ex. View the 5 countries' education data with the highest number of confirmed cases) </p>
+         <p> Sort the data based on a Covid-19 statistic and view the top few or bottom few countries' data. </p>
+         <p> (Ex. View 5 countries' education data with the highest number of confirmed cases) </p>
          <div class="column left">
            <form action="education_2.php" method="post">
              View either the top countries or bottom countries
@@ -60,9 +62,8 @@
        <br>
        <div class="container row">
          <h3> Option 3: Query sort based on Education statistic </h3>
-         <p> Sort the data based on an Education statistic and view the top few or bottom
-           few countries' data. </p>
-         <p> (Ex. View the 5 countries' education data with the highest Total Public Expenditure on Education) </p>
+         <p> Sort the data based on an Education statistic and view the top few or bottom few countries' data. </p>
+         <p> (Ex. View 5 countries' education data with the highest Total Public Expenditure on Education) </p>
          <div class="column left">
            <form action="education_3.php" method="post">
              View either the top countries or bottom countries
