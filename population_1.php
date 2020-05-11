@@ -76,13 +76,11 @@ foreach ($countries as $country) {
         // Otherwise, we received real results, so output table
         } else {
           // Output each row of resulting relation
-          do {
-            echo "<tr>";
-            for($i = 0; $i < sizeof($row); $i++){
-              echo "<td>" . $row[$i] . "</td>";
-            }
-            echo "</tr>";
-          } while ($row = $result->fetch_row());
+          echo "<tr>";
+          for($i = 0; $i < sizeof($row); $i++){
+            echo "<td>" . $row[$i] . "</td>";
+          }
+          echo "</tr>";
         }
         $result->close();
         $mysqli->next_result();
