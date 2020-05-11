@@ -382,4 +382,147 @@ BEGIN
   LIMIT num;
 END;
 //
+DROP PROCEDURE IF EXISTS EducationCovid //
+CREATE PROCEDURE EducationCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Education.totalPublicExp,
+   Education.primaryEdPercent,
+   Education.secondaryEdPercent,
+   Education.tertiaryEdPercent,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+
+  FROM Education, Country, DailyCOVID19Reports
+  WHERE Education.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS LaborForceCovid //
+CREATE PROCEDURE LaborForceCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   LaborForce.laborForceParticipationRate,
+   LaborForce.unemploymentRate,
+   LaborForce.percentEmplAgriculture,
+   LaborForce.percentEmplIndustry,
+   LaborForce.percentEmplServices,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+
+  FROM LaborForce, Country, DailyCOVID19Reports
+  WHERE LaborForce.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS TravelCovid //
+CREATE PROCEDURE TravelCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Travel.migrantPercentOfPop,
+   Travel.numRefugeesAndAsylum,
+   Travel.tourismExp,
+   Travel.numTourists,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Travel, Country, DailyCOVID19Reports
+  WHERE Travel.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS HealthCovid //
+CREATE PROCEDURE HealthCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Health.healthExp,
+   Health.physiciansPer1000,
+   Health.popUsingSafeSanitationFacilities,
+   Health.popUsingSafeWaterServices,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Health, Country, DailyCOVID19Reports
+  WHERE Health.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS GDPCovid //
+CREATE PROCEDURE GDPCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   GDP.gdp,
+   GDP.gdpPerCapita,
+   GDP.rdGDPExp,
+   GDP.healthGDPExp,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM GDP, Country, DailyCOVID19Reports
+  WHERE GDP.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END ASC
+
+  LIMIT num;
+END;
+//
 delimiter ;
