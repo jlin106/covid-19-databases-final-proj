@@ -352,7 +352,8 @@ BEGIN
      AND Country.name = country;
 END;
 //
-DROP PROCEDURE IF EXISTS PopulationCovid(IN topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+DROP PROCEDURE IF EXISTS PopulationCovid //
+CREATE PROCEDURE PopulationCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
 BEGIN
   IF attribute = 'numConfirmed' THEN
     SELECT Country.name,
