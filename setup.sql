@@ -551,7 +551,7 @@ BEGIN
    DailyCOVID19Reports.numRecovered
   FROM ExportsTo, Country, DailyCOVID19Reports
   WHERE ExportsTo.countryId = @mainCountryId
-  AND ExportsTo.importFromCountryId = Country.countryId
+  AND ExportsTo.exportToCountryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
     AND DailyCOVID19Reports.date = '2020-05-08';
 END;
