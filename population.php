@@ -49,7 +49,7 @@
        <div class="container row">
          <h3> Option 3: Data sorted by population data </h3>
          <div class="column left">
-           <form action="" method="post">
+           <form action="population_3.php" method="post">
              View <select id="topbottom" name="topbottom">
                <option value="top">top</option>
                <option value="bottom">bottom</option>
