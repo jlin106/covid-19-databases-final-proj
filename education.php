@@ -28,9 +28,19 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 2:</h3>
+         <h3> Option 2: Education data sorted by COVID data </h3>
          <div class="column left">
-           <form action="" method="post">
+           <form action="education_2.php" method="post">
+             View <select id="topbottom" name="topbottom">
+               <option value="top">top</option>
+               <option value="bottom">bottom</option>
+             </select> (1-235) <input type="text" name="number"> countries by
+             <select id="attribute" name="attribute">
+               <option value="numConfirmed">Number of Confirmed Cases</option>
+               <option value="numDeaths">Number of Deaths</option>
+               <option value="numRecovered">Number of Recovered</option>
+             </select>.
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>
