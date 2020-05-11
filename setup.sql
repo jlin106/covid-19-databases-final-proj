@@ -524,4 +524,20 @@ BEGIN
   LIMIT num;
 END;
 //
+DROP PROCEDURE IF EXISTS ImportsByCountry //
+CREATE PROCEDURE ImportsByCountry(country VARCHAR(40))
+BEGIN
+  SELECT countryId INTO @mainCountryId FROM Country WHERE name = country;
+  SELECT Country.name,
+   ImportsFrom.percentImportOfTotalTrade,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM ImportsFrom, Country, DailyCOVID19Reports
+  WHERE ImportsFrom.countryId = @mainCountryId
+  AND ImportsFrom.importFromCountryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08';
+END;
+//
 delimiter ;
