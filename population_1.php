@@ -76,14 +76,16 @@ foreach ($countries as $country) {
         // Otherwise, we received real results, so output table
         } else {
           // Output each row of resulting relation
-          echo "<tr>";
-          for($i = 0; $i < sizeof($row); $i++){
-            echo "<td>" . $row[$i] . "</td>";
-          }
-          echo "</tr>";
+          do {
+            echo "<tr>";
+            for($i = 0; $i < sizeof($row); $i++){
+              echo "<td>" . $row[$i] . "</td>";
+            }
+            echo "</tr>";
+          } while ($row = $result->fetch_row());
         }
         $result->close();
-        $mysqli->next_result();
+        //$mysqli->next_result();
      }
   // The "multi_query" call did not end successfully, so report the error
   // This might indicate we've called a stored procedure that does not exist,
