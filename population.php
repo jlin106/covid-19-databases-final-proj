@@ -22,7 +22,7 @@
            <form action="population_1.php" method="post">
             <label for="country[]">Select country/countries of interest:</label>
      	      <br>
-     	      <select id="country[]" name="country[]" multiple>
+     	      <select id="country[]" name="country[]" multiple required>
                <?php
                  $countries = $mysqli->query("SELECT name FROM Country");
                  while ($rows = $countries->fetch_assoc()) {
@@ -44,14 +44,14 @@
          <div class="column left">
            <form action="population_2.php" method="post">
              View either the top countries or bottom countries
-             <select id="topbottom" name="topbottom">
+             <select id="topbottom" name="topbottom" required>
                <option value="top">top</option>
                <option value="bottom">bottom</option>
              </select>
              Enter number of countries to display (1-235)
-             <input type="text" name="number">
+             <input type="text" name="number" required>
              Sort by Covid-19 statistic:
-             <select id="attribute" name="attribute">
+             <select id="attribute" name="attribute" required>
                <option value="numConfirmed">Number of Confirmed Cases</option>
                <option value="numDeaths">Number of Deaths</option>
                <option value="numRecovered">Number of Recovered</option>
@@ -69,14 +69,14 @@
          <div class="column left">
            <form action="population_3.php" method="post">
              View either the top countries or bottom countries
-             <select id="topbottom" name="topbottom">
+             <select id="topbottom" name="topbottom" required>
                <option value="top">top</option>
                <option value="bottom">bottom</option>
              </select>
              Enter number of countries to display (1-235)
-             <input type="text" name="number">
-             Sort by Covid-19 statistic:
-             <select id="attribute" name="attribute">
+             <input type="text" name="number" required>
+             Sort by Population statistic:
+             <select id="attribute" name="attribute" required>
                <option value="estPopSize">Estimated Population Size</option>
                <option value="popDensity">Population Density</option>
                <option value="rateIncrease">Population Rate of Increase</option>

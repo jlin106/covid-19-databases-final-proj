@@ -27,7 +27,7 @@
       <form action="trade_1.php" method="post">
         <label for="country[]">Select country/countries of interest:</label>
         <br>
-        <select id="country[]" name="country[]" multiple>
+        <select id="country[]" name="country[]" multiple required>
            <?php
              $countries = $mysqli->query("SELECT name FROM Country");
              while ($rows = $countries->fetch_assoc()) {
