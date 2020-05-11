@@ -1,5 +1,5 @@
 <head>
- <title>Edu. Option 2</title>
+ <title>Travel Option 3</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -9,10 +9,10 @@
 function outputResultsTableHeader() {
    echo "<tr>";
    echo "<th> Country </th>";
-   echo "<th> Total Public Expenditure on Education<br />(% of govt. exp) </th>";
-   echo "<th> Government Expenditure on Primary Education<br />(% of govt. exp. on education) </th>";
-   echo "<th> Government Expenditure on Secondary Education<br />(% of govt. exp. on education) </th>";
-   echo "<th> Government Expenditure on Tertiary Education<br />(% of govt. exp. on education) </th>";
+   echo "<th> International Migrant Percentage<br />(% of total pop.) </th>";
+   echo "<th> Refugees and Asylum Seekers Percentage<br /> </th>";
+   echo "<th> Toursim Expenditure<br />($ millions) </th>";
+   echo "<th> Tourist/Visitor Arrivals<br />(thousands) </th>";
    echo "<th> Number of Confimed Cases </th>";
    echo "<th> Number of Deaths </th>";
    echo "<th> Number of Recovered Cases </th>";
@@ -36,16 +36,17 @@ $number = $_POST['number'];
 $attribute = $_POST['attribute'];
 
 
-echo "<h2> Option 2: Query education data by sorted by COVID data </h2>";
+echo "<h2> Option 3: Query data by sorted by travel data </h2>";
 echo "<div class='container row'>";
 echo "<h3> Currently showing ";
 echo $topbottom;
 echo " ";
 echo $number;
 echo " countries sorted by ";
-echo ($attribute == 'numConfirmed') ? "number of confirmed cases." : "";
-echo ($attribute == 'numDeaths') ? "number of deaths." : "";
-echo ($attribute == 'numRecovered') ? "number of recovered cases" : "";
+echo ($attribute == 'migrantPercentOfPop') ? "International Migrant Percentage" : "";
+echo ($attribute == 'numRefugeesAndAsylum') ? "Refugees and Asylum Seekers Percentage" : "";
+echo ($attribute == 'tourismExp') ? "Toursim Expenditure" : "";
+echo ($attribute == 'numTourists') ? "Tourist/Visitor Arrivals" : "";
 echo "</h3>";
 
 echo "<table border=\"1px solid black\">";
@@ -53,7 +54,7 @@ echo "<table border=\"1px solid black\">";
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
-if ($mysqli->multi_query("CALL EducationCovid('".$topbottom."','".$number."','".$attribute."');")) {
+if ($mysqli->multi_query("CALL TravelThree('".$topbottom."','".$number."','".$attribute."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {

@@ -1,5 +1,5 @@
 <head>
- <title>Edu. Option 2</title>
+ <title>Labor Force Option 3</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -9,10 +9,11 @@
 function outputResultsTableHeader() {
    echo "<tr>";
    echo "<th> Country </th>";
-   echo "<th> Total Public Expenditure on Education<br />(% of govt. exp) </th>";
-   echo "<th> Government Expenditure on Primary Education<br />(% of govt. exp. on education) </th>";
-   echo "<th> Government Expenditure on Secondary Education<br />(% of govt. exp. on education) </th>";
-   echo "<th> Government Expenditure on Tertiary Education<br />(% of govt. exp. on education) </th>";
+   echo "<th> Labor Force Participation Rate<br />(%) </th>";
+   echo "<th> Unemployment Rate<br />(%) </th>";
+   echo "<th> Percentage Employed in Agriculture<br />(%) </th>";
+   echo "<th> Percentage Employed in Industry<br />(%) </th>";
+   echo "<th> Percentage Employed in Service<br />(%) </th>";
    echo "<th> Number of Confimed Cases </th>";
    echo "<th> Number of Deaths </th>";
    echo "<th> Number of Recovered Cases </th>";
@@ -36,16 +37,18 @@ $number = $_POST['number'];
 $attribute = $_POST['attribute'];
 
 
-echo "<h2> Option 2: Query education data by sorted by COVID data </h2>";
+echo "<h2> Option 3: Query data sorted by labor force data </h2>";
 echo "<div class='container row'>";
 echo "<h3> Currently showing ";
 echo $topbottom;
 echo " ";
 echo $number;
 echo " countries sorted by ";
-echo ($attribute == 'numConfirmed') ? "number of confirmed cases." : "";
-echo ($attribute == 'numDeaths') ? "number of deaths." : "";
-echo ($attribute == 'numRecovered') ? "number of recovered cases" : "";
+echo ($attribute == 'laborForceParticipationRate') ? "Labor Force Participation Rate" : "";
+echo ($attribute == 'unemploymentRate') ? "Unemployment Rate" : "";
+echo ($attribute == 'percentEmplAgriculture') ? "Percentage Employed in Agriculture" : "";
+echo ($attribute == 'percentEmplIndustry') ? "Percentage Employed in Industry" : "";
+echo ($attribute == 'percentEmplServices') ? "Percentage Employed in Service" : "";
 echo "</h3>";
 
 echo "<table border=\"1px solid black\">";
@@ -53,7 +56,7 @@ echo "<table border=\"1px solid black\">";
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
-if ($mysqli->multi_query("CALL EducationCovid('".$topbottom."','".$number."','".$attribute."');")) {
+if ($mysqli->multi_query("CALL LaborForceThree('".$topbottom."','".$number."','".$attribute."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {

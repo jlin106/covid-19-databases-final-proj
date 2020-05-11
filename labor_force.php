@@ -47,9 +47,21 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3:</h3>
+         <h3> Option 3: Data sorted by labor force data </h3>
          <div class="column left">
-           <form action="" method="post">
+           <form action="laborforce_3.php" method="post">
+             View <select id="topbottom" name="topbottom">
+               <option value="top">top</option>
+               <option value="bottom">bottom</option>
+             </select> (1-235) <input type="text" name="number"> countries by
+             <select id="attribute" name="attribute">
+               <option value="laborForceParticipationRate">Labor Force Participation Rate</option>
+               <option value="unemploymentRate">Unemployment Rate</option>
+               <option value="percentEmplAgriculture">Percentage Employed in Agriculture</option>
+               <option value="percentEmplIndustry">Percentage Employed in Industry</option>
+               <option value="percentEmplServices">Percentage Employed in Service</option>
+             </select>.
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>
