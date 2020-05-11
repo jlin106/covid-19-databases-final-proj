@@ -20,11 +20,11 @@
         <label for="covid_date">Enter date (01/22/2020 to 05/08/2020):</label>
         <br>
         <input type="date" id="covid_date" name="covid_date"
-               min="2020-01-22" max="2020-05-08">
+               min="2020-01-22" max="2020-05-08" required>
         <br>
         <br>
         <label for="country">Sort by attribute:</label>
-        <select id="covid_attribute" name="covid_attribute">
+        <select id="covid_attribute" name="covid_attribute" required>
           <option value="numConfirmed">Number of Confimed Cases</option>
           <option value="numDeaths">Number of Deaths</option>
           <option value="numRecovered">Number of Recovered Cases</option>
@@ -42,12 +42,12 @@
         <label for="covid_date">Enter date (01/22/2020 to 05/08/2020):</label>
         <br>
         <input type="date" id="covid_date" name="covid_date"
-               min="2020-01-22" max="2020-05-08">
+               min="2020-01-22" max="2020-05-08" required>
         <br>
         <br>
         <label for="country[]">Select country/countries of interest:</label>
 	      <br>
-	      <select id="country[]" name="country[]" multiple>
+	      <select id="country[]" name="country[]" multiple required>
           <?php
             $countries = $mysqli->query("SELECT name FROM Country");
             while ($rows = $countries->fetch_assoc()) {
@@ -68,7 +68,7 @@
       <form action="covid_3.php" method="post">
         <label for="country">Select one country of interest:</label>
 	      <br>
-	      <select id="country" name="country">
+	      <select id="country" name="country" required>
           <?php
           $countries = $mysqli->query("SELECT name FROM Country");
             while ($rows = $countries->fetch_assoc()) {
