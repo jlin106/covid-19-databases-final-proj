@@ -10,7 +10,7 @@ function outputResultsTableHeader() {
    echo "<tr>";
    echo "<th> Country </th>";
    echo "<th> International Migrant Percentage<br />(% of total pop.) </th>";
-   echo "<th> Refugees and Asylum Seekers Percentage<br /> </th>";
+   echo "<th> Refugees and Asylum Seekers<br /> </th>";
    echo "<th> Toursim Expenditure<br />($ millions) </th>";
    echo "<th> Tourist/Visitor Arrivals<br />(thousands) </th>";
    echo "<th> Number of Confimed Cases </th>";
