@@ -35,8 +35,8 @@
        <div class="container row">
          <h3> Option 2: Query sort based on Covid-19 statistic </h3>
          <p> Sort the data based on a Covid-19 statistic and view the top few or bottom
-           few countries' Education statistics along with Covid-19 statistics.
-           (Ex. View the 5 countries' education data with the highest number of confirmed cases) </p>
+           few countries' data. </p>
+         <p> (Ex. View the 5 countries' education data with the highest number of confirmed cases) </p>
          <div class="column left">
            <form action="education_2.php" method="post">
              View either the top countries or bottom countries
@@ -61,8 +61,8 @@
        <div class="container row">
          <h3> Option 3: Query sort based on Education statistic </h3>
          <p> Sort the data based on an Education statistic and view the top few or bottom
-           few countries' Education statistics along with Covid-19 statistics.
-         (Ex. View the 5 countries' education data with the highest Total Public Expenditure on Education) </p>
+           few countries' data. </p>
+         <p> (Ex. View the 5 countries' education data with the highest Total Public Expenditure on Education) </p>
          <div class="column left">
            <form action="education_3.php" method="post">
              View either the top countries or bottom countries
