@@ -202,3 +202,508 @@ LOAD DATA LOCAL INFILE './small_relation_data/exportsTo-small.txt'
  INTO TABLE ExportsTo_small
  FIELDS TERMINATED BY ','
  IGNORE 1 LINES;
+
+ delimiter //
+ DROP PROCEDURE IF EXISTS small_CovidSortBy //
+ CREATE PROCEDURE small_CovidSortBy(IN covid_date VARCHAR(40), covid_attribute VARCHAR(40))
+ BEGIN
+   IF covid_attribute = 'numConfirmed' THEN
+     SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+     FROM DailyCOVID19Reports_small, Country_small
+     WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date
+     ORDER BY numConfirmed DESC;
+   ELSEIF covid_attribute = 'numDeaths' THEN
+     SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+     FROM DailyCOVID19Reports_small, Country_small
+     WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date
+     ORDER BY numDeaths DESC;
+   ELSE
+     SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+     FROM DailyCOVID19Reports_small, Country_small
+     WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date
+     ORDER BY numRecovered DESC;
+   END IF;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_CovidByCountry //
+ CREATE PROCEDURE small_CovidByCountry(IN covid_date VARCHAR(40), country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+   FROM DailyCOVID19Reports_small, Country_small
+   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_CovidTimeSeries //
+ CREATE PROCEDURE small_CovidTimeSeries(IN country VARCHAR(40))
+ BEGIN
+   SELECT DailyCOVID19Reports_small.date, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+   FROM DailyCOVID19Reports_small, Country_small
+   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_PopulationByCountry //
+ CREATE PROCEDURE small_PopulationByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Population_small.estPopSize,
+    Population_small.popDensity,
+    Population_small.rateIncrease,
+    Population_small.lifeExpectancy,
+    Population_small.mortalityRate,
+    Population_small.fertilityRate,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Population_small, Country_small, DailyCOVID19Reports_small
+   WHERE Population_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+      AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_EducationByCountry //
+ CREATE PROCEDURE small_EducationByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Education_small.totalPublicExp,
+    Education_small.primaryEdPercent,
+    Education_small.secondaryEdPercent,
+    Education_small.tertiaryEdPercent,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Education_small, Country_small, DailyCOVID19Reports_small
+   WHERE Education_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+      AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_LaborForceByCountry //
+ CREATE PROCEDURE small_LaborForceByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    LaborForce_small.laborForceParticipationRate,
+    LaborForce_small.unemploymentRate,
+    LaborForce_small.percentEmplAgriculture,
+    LaborForce_small.percentEmplIndustry,
+    LaborForce_small.percentEmplServices,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM LaborForce_small, Country_small, DailyCOVID19Reports_small
+   WHERE LaborForce_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+      AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_TravelByCountry //
+ CREATE PROCEDURE small_TravelByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Travel_small.migrantPercentOfPop,
+    Travel_small.numRefugeesAndAsylum,
+    Travel_small.tourismExp,
+    Travel_small.numTourists,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Travel_small, Country_small, DailyCOVID19Reports_small
+   WHERE Travel_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+      AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_HealthByCountry //
+ CREATE PROCEDURE small_HealthByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Health_small.healthExp,
+    Health_small.physiciansPer1000,
+    Health_small.popUsingSafeSanitationFacilities,
+    Health_small.popUsingSafeWaterServices,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Health_small, Country_small, DailyCOVID19Reports_small
+   WHERE Health_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+      AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_GDPByCountry //
+ CREATE PROCEDURE small_GDPByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    GDP_small.gdp,
+    GDP_small.gdpPerCapita,
+    GDP_small.rdGDPExp,
+    GDP_small.healthGDPExp,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM GDP_small, Country_small, DailyCOVID19Reports_small
+   WHERE GDP_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+      AND Country_small.name = country;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_PopulationCovid //
+ CREATE PROCEDURE small_PopulationCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Population_small.estPopSize,
+    Population_small.popDensity,
+    Population_small.rateIncrease,
+    Population_small.lifeExpectancy,
+    Population_small.mortalityRate,
+    Population_small.fertilityRate,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+
+   FROM Population_small, Country_small, DailyCOVID19Reports_small
+   WHERE Population_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_EducationCovid //
+ CREATE PROCEDURE small_EducationCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Education_small.totalPublicExp,
+    Education_small.primaryEdPercent,
+    Education_small.secondaryEdPercent,
+    Education_small.tertiaryEdPercent,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+
+   FROM Education_small, Country_small, DailyCOVID19Reports_small
+   WHERE Education_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_LaborForceCovid //
+ CREATE PROCEDURE small_LaborForceCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    LaborForce_small.laborForceParticipationRate,
+    LaborForce_small.unemploymentRate,
+    LaborForce_small.percentEmplAgriculture,
+    LaborForce_small.percentEmplIndustry,
+    LaborForce_small.percentEmplServices,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+
+   FROM LaborForce_small, Country_small, DailyCOVID19Reports_small
+   WHERE LaborForce_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_TravelCovid //
+ CREATE PROCEDURE small_TravelCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Travel_small.migrantPercentOfPop,
+    Travel_small.numRefugeesAndAsylum,
+    Travel_small.tourismExp,
+    Travel_small.numTourists,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Travel_small, Country_small, DailyCOVID19Reports_small
+   WHERE Travel_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_HealthCovid //
+ CREATE PROCEDURE small_HealthCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Health_small.healthExp,
+    Health_small.physiciansPer1000,
+    Health_small.popUsingSafeSanitationFacilities,
+    Health_small.popUsingSafeWaterServices,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Health_small, Country_small, DailyCOVID19Reports_small
+   WHERE Health_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_GDPCovid //
+ CREATE PROCEDURE small_GDPCovid(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    GDP_small.gdp,
+    GDP_small.gdpPerCapita,
+    GDP_small.rdGDPExp,
+    GDP_small.healthGDPExp,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM GDP_small, Country_small, DailyCOVID19Reports_small
+   WHERE GDP_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_PopulationThree //
+ CREATE PROCEDURE small_PopulationThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Population_small.estPopSize,
+    Population_small.popDensity,
+    Population_small.rateIncrease,
+    Population_small.lifeExpectancy,
+    Population_small.mortalityRate,
+    Population_small.fertilityRate,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+
+   FROM Population_small, Country_small, DailyCOVID19Reports_small
+   WHERE Population_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'estPopSize') THEN Population_small.estPopSize END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'estPopSize') THEN Population_small.estPopSize END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'popDensity') THEN Population_small.popDensity END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'popDensity') THEN Population_small.popDensity END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'rateIncrease') THEN Population_small.rateIncrease END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'rateIncrease') THEN Population_small.rateIncrease END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'lifeExpectancy') THEN Population_small.lifeExpectancy END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'lifeExpectancy') THEN Population_small.lifeExpectancy END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'mortalityRate') THEN Population_small.mortalityRate END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'mortalityRate') THEN Population_small.mortalityRate END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'fertilityRate') THEN Population_small.fertilityRate END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'fertilityRate') THEN Population_small.fertilityRate END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_EducationThree //
+ CREATE PROCEDURE small_EducationThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Education_small.totalPublicExp,
+    Education_small.primaryEdPercent,
+    Education_small.secondaryEdPercent,
+    Education_small.tertiaryEdPercent,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+
+   FROM Education_small, Country_small, DailyCOVID19Reports_small
+   WHERE Education_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'totalPublicExp') THEN Education_small.totalPublicExp END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'totalPublicExp') THEN Education_small.totalPublicExp END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'primaryEdPercent') THEN Education_small.primaryEdPercent END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'primaryEdPercent') THEN Education_small.primaryEdPercent END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'secondaryEdPercent') THEN Education_small.secondaryEdPercent END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'secondaryEdPercent') THEN Education_small.secondaryEdPercent END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'tertiaryEdPercent') THEN Education_small.tertiaryEdPercent END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'tertiaryEdPercent') THEN Education_small.tertiaryEdPercent END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_LaborForceThree //
+ CREATE PROCEDURE small_LaborForceThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    LaborForce_small.laborForceParticipationRate,
+    LaborForce_small.unemploymentRate,
+    LaborForce_small.percentEmplAgriculture,
+    LaborForce_small.percentEmplIndustry,
+    LaborForce_small.percentEmplServices,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+
+   FROM LaborForce_small, Country_small, DailyCOVID19Reports_small
+   WHERE LaborForce_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'laborForceParticipationRate') THEN LaborForce_small.laborForceParticipationRate END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'laborForceParticipationRate') THEN LaborForce_small.laborForceParticipationRate END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'unemploymentRate') THEN LaborForce_small.unemploymentRate END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'unemploymentRate') THEN LaborForce_small.unemploymentRate END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'percentEmplAgriculture') THEN LaborForce_small.percentEmplAgriculture END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'percentEmplAgriculture') THEN LaborForce_small.percentEmplAgriculture END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'percentEmplIndustry') THEN LaborForce_small.percentEmplIndustry END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'percentEmplIndustry') THEN LaborForce_small.percentEmplIndustry END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'percentEmplServices') THEN LaborForce_small.percentEmplServices END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'percentEmplServices') THEN LaborForce_small.percentEmplServices END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_TravelThree //
+ CREATE PROCEDURE small_TravelThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Travel_small.migrantPercentOfPop,
+    Travel_small.numRefugeesAndAsylum,
+    Travel_small.tourismExp,
+    Travel_small.numTourists,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Travel_small, Country_small, DailyCOVID19Reports_small
+   WHERE Travel_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'migrantPercentOfPop') THEN Travel_small.migrantPercentOfPop END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'migrantPercentOfPop') THEN Travel_small.migrantPercentOfPop END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numRefugeesAndAsylum') THEN Travel_small.numRefugeesAndAsylum END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRefugeesAndAsylum') THEN Travel_small.numRefugeesAndAsylum END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'tourismExp') THEN Travel_small.tourismExp END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'tourismExp') THEN Travel_small.tourismExp END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'numTourists') THEN Travel_small.numTourists END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'numTourists') THEN Travel_small.numTourists END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_HealthThree //
+ CREATE PROCEDURE small_HealthThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    Health_small.healthExp,
+    Health_small.physiciansPer1000,
+    Health_small.popUsingSafeSanitationFacilities,
+    Health_small.popUsingSafeWaterServices,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM Health_small, Country_small, DailyCOVID19Reports_small
+   WHERE Health_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'healthExp') THEN Health_small.healthExp END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'healthExp') THEN Health_small.healthExp END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'physiciansPer1000') THEN Health_small.physiciansPer1000 END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'physiciansPer1000') THEN Health_small.physiciansPer1000 END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'popUsingSafeSanitationFacilities') THEN Health_small.popUsingSafeSanitationFacilities END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'popUsingSafeSanitationFacilities') THEN Health_small.popUsingSafeSanitationFacilities END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'popUsingSafeWaterServices') THEN Health_small.popUsingSafeWaterServices END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'popUsingSafeWaterServices') THEN Health_small.popUsingSafeWaterServices END ASC
+
+   LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_GDPThree //
+ CREATE PROCEDURE small_GDPThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+ BEGIN
+   SELECT Country_small.name,
+    GDP_small.gdp,
+    GDP_small.gdpPerCapita,
+    GDP_small.rdGDPExp,
+    GDP_small.healthGDPExp,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM GDP_small, Country_small, DailyCOVID19Reports_small
+   WHERE GDP_small.countryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08'
+
+   ORDER BY
+   CASE WHEN (topbottom = 'top' AND attribute = 'gdp') THEN GDP_small.gdp END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'gdp') THEN GDP_small.gdp END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'gdpPerCapita') THEN GDP_small.gdpPerCapita END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'gdpPerCapita') THEN GDP_small.gdpPerCapita END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'rdGDPExp') THEN GDP_small.rdGDPExp END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'rdGDPExp') THEN GDP_small.rdGDPExp END ASC,
+   CASE WHEN (topbottom = 'top' AND attribute = 'healthGDPExp') THEN GDP_small.healthGDPExp END DESC,
+   CASE WHEN (topbottom  = 'bottom' AND attribute = 'healthGDPExp') THEN GDP_small.healthGDPExp END ASC
+
+   LIMIT num;
+ END;
+ //
+ delimiter ;

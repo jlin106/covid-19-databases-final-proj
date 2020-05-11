@@ -1,5 +1,5 @@
 <head>
- <title>Edu. Option 1</title>
+ <title>Edu. Option 2</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>

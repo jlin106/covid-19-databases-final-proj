@@ -1,5 +1,5 @@
 <head>
- <title>Travel Option 2</title>
+ <title>Pop. Option 3</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -9,10 +9,12 @@
 function outputResultsTableHeader() {
    echo "<tr>";
    echo "<th> Country </th>";
-   echo "<th> International Migrant Percentage<br />(% of total pop.) </th>";
-   echo "<th> Refugees and Asylum Seekers<br /> </th>";
-   echo "<th> Toursim Expenditure<br />($ millions) </th>";
-   echo "<th> Tourist/Visitor Arrivals<br />(thousands) </th>";
+   echo "<th> Estimated Population Size<br />(millions) </th>";
+   echo "<th> Population Density<br />(per km<sup>2</sup>) </th>";
+   echo "<th> Population Rate of Increase<br />(annual %) </th>";
+   echo "<th> Life Expectancy<br />(years) </th>";
+   echo "<th> Infant Mortality Rate<br />(per 1000 live births) </th>";
+   echo "<th> Fertility Rate<br />(live births per woman)</th>";
    echo "<th> Number of Confimed Cases </th>";
    echo "<th> Number of Deaths </th>";
    echo "<th> Number of Recovered Cases </th>";
@@ -36,16 +38,19 @@ $number = $_POST['number'];
 $attribute = $_POST['attribute'];
 
 
-echo "<h2> Option 2: Query travel data by sorted by COVID data </h2>";
+echo "<h2> Option 3: Query data sorted by population data </h2>";
 echo "<div class='container row'>";
 echo "<h3> Currently showing ";
 echo $topbottom;
 echo " ";
 echo $number;
 echo " countries sorted by ";
-echo ($attribute == 'numConfirmed') ? "number of confirmed cases." : "";
-echo ($attribute == 'numDeaths') ? "number of deaths." : "";
-echo ($attribute == 'numRecovered') ? "number of recovered cases" : "";
+echo ($attribute == 'estPopSize') ? "estimated population size" : "";
+echo ($attribute == 'popDensity') ? "population density" : "";
+echo ($attribute == 'rateIncrease') ? "population rate of increase" : "";
+echo ($attribute == 'lifeExpectancy') ? "life expectancy" : "";
+echo ($attribute == 'mortalityRate') ? "infant mortality rate" : "";
+echo ($attribute == 'fertilityRate') ? "fertility rate" : "";
 echo "</h3>";
 
 echo "<table border=\"1px solid black\">";
@@ -53,7 +58,7 @@ echo "<table border=\"1px solid black\">";
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
 // from which we can call ->fetch_row() to see successive rows
-if ($mysqli->multi_query("CALL TravelCovid('".$topbottom."','".$number."','".$attribute."');")) {
+if ($mysqli->multi_query("CALL PopulationThree('".$topbottom."','".$number."','".$attribute."');")) {
 
    // Check if a result was returned after the call
    if ($result = $mysqli->store_result()) {

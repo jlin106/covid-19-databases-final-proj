@@ -47,9 +47,20 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3:</h3>
+         <h3> Option 3: Data sorted by health data </h3>
          <div class="column left">
-           <form action="" method="post">
+           <form action="health_3.php" method="post">
+             View <select id="topbottom" name="topbottom">
+               <option value="top">top</option>
+               <option value="bottom">bottom</option>
+             </select> (1-235) <input type="text" name="number"> countries by
+             <select id="attribute" name="attribute">
+               <option value="healthExp">Health Expenditure</option>
+               <option value="physiciansPer1000">Physicians Per 1000</option>
+               <option value="popUsingSafeSanitationFacilities">Percentage of Population with Access to Safe Sanitation Facilities</option>
+               <option value="popUsingSafeWaterServices">Percentage of Population with Access to Safe Water Facilities</option>
+             </select>.
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>

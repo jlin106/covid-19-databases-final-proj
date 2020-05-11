@@ -556,4 +556,190 @@ BEGIN
     AND DailyCOVID19Reports.date = '2020-05-08';
 END;
 //
+DROP PROCEDURE IF EXISTS PopulationThree //
+CREATE PROCEDURE PopulationThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Population.estPopSize,
+   Population.popDensity,
+   Population.rateIncrease,
+   Population.lifeExpectancy,
+   Population.mortalityRate,
+   Population.fertilityRate,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+
+  FROM Population, Country, DailyCOVID19Reports
+  WHERE Population.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'estPopSize') THEN Population.estPopSize END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'estPopSize') THEN Population.estPopSize END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'popDensity') THEN Population.popDensity END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'popDensity') THEN Population.popDensity END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'rateIncrease') THEN Population.rateIncrease END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'rateIncrease') THEN Population.rateIncrease END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'lifeExpectancy') THEN Population.lifeExpectancy END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'lifeExpectancy') THEN Population.lifeExpectancy END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'mortalityRate') THEN Population.mortalityRate END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'mortalityRate') THEN Population.mortalityRate END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'fertilityRate') THEN Population.fertilityRate END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'fertilityRate') THEN Population.fertilityRate END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS EducationThree //
+CREATE PROCEDURE EducationThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Education.totalPublicExp,
+   Education.primaryEdPercent,
+   Education.secondaryEdPercent,
+   Education.tertiaryEdPercent,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+
+  FROM Education, Country, DailyCOVID19Reports
+  WHERE Education.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'totalPublicExp') THEN Education.totalPublicExp END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'totalPublicExp') THEN Education.totalPublicExp END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'primaryEdPercent') THEN Education.primaryEdPercent END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'primaryEdPercent') THEN Education.primaryEdPercent END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'secondaryEdPercent') THEN Education.secondaryEdPercent END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'secondaryEdPercent') THEN Education.secondaryEdPercent END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'tertiaryEdPercent') THEN Education.tertiaryEdPercent END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'tertiaryEdPercent') THEN Education.tertiaryEdPercent END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS LaborForceThree //
+CREATE PROCEDURE LaborForceThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   LaborForce.laborForceParticipationRate,
+   LaborForce.unemploymentRate,
+   LaborForce.percentEmplAgriculture,
+   LaborForce.percentEmplIndustry,
+   LaborForce.percentEmplServices,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+
+  FROM LaborForce, Country, DailyCOVID19Reports
+  WHERE LaborForce.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'laborForceParticipationRate') THEN LaborForce.laborForceParticipationRate END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'laborForceParticipationRate') THEN LaborForce.laborForceParticipationRate END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'unemploymentRate') THEN LaborForce.unemploymentRate END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'unemploymentRate') THEN LaborForce.unemploymentRate END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'percentEmplAgriculture') THEN LaborForce.percentEmplAgriculture END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'percentEmplAgriculture') THEN LaborForce.percentEmplAgriculture END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'percentEmplIndustry') THEN LaborForce.percentEmplIndustry END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'percentEmplIndustry') THEN LaborForce.percentEmplIndustry END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'percentEmplServices') THEN LaborForce.percentEmplServices END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'percentEmplServices') THEN LaborForce.percentEmplServices END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS TravelThree //
+CREATE PROCEDURE TravelThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Travel.migrantPercentOfPop,
+   Travel.numRefugeesAndAsylum,
+   Travel.tourismExp,
+   Travel.numTourists,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Travel, Country, DailyCOVID19Reports
+  WHERE Travel.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'migrantPercentOfPop') THEN Travel.migrantPercentOfPop END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'migrantPercentOfPop') THEN Travel.migrantPercentOfPop END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numRefugeesAndAsylum') THEN Travel.numRefugeesAndAsylum END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRefugeesAndAsylum') THEN Travel.numRefugeesAndAsylum END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'tourismExp') THEN Travel.tourismExp END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'tourismExp') THEN Travel.tourismExp END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'numTourists') THEN Travel.numTourists END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'numTourists') THEN Travel.numTourists END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS HealthThree //
+CREATE PROCEDURE HealthThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Health.healthExp,
+   Health.physiciansPer1000,
+   Health.popUsingSafeSanitationFacilities,
+   Health.popUsingSafeWaterServices,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Health, Country, DailyCOVID19Reports
+  WHERE Health.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'healthExp') THEN Health.healthExp END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'healthExp') THEN Health.healthExp END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'physiciansPer1000') THEN Health.physiciansPer1000 END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'physiciansPer1000') THEN Health.physiciansPer1000 END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'popUsingSafeSanitationFacilities') THEN Health.popUsingSafeSanitationFacilities END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'popUsingSafeSanitationFacilities') THEN Health.popUsingSafeSanitationFacilities END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'popUsingSafeWaterServices') THEN Health.popUsingSafeWaterServices END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'popUsingSafeWaterServices') THEN Health.popUsingSafeWaterServices END ASC
+
+  LIMIT num;
+END;
+//
+DROP PROCEDURE IF EXISTS GDPThree //
+CREATE PROCEDURE GDPThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   GDP.gdp,
+   GDP.gdpPerCapita,
+   GDP.rdGDPExp,
+   GDP.healthGDPExp,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM GDP, Country, DailyCOVID19Reports
+  WHERE GDP.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'gdp') THEN GDP.gdp END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'gdp') THEN GDP.gdp END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'gdpPerCapita') THEN GDP.gdpPerCapita END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'gdpPerCapita') THEN GDP.gdpPerCapita END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'rdGDPExp') THEN GDP.rdGDPExp END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'rdGDPExp') THEN GDP.rdGDPExp END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'healthGDPExp') THEN GDP.healthGDPExp END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'healthGDPExp') THEN GDP.healthGDPExp END ASC
+
+  LIMIT num;
+END;
+//
 delimiter ;

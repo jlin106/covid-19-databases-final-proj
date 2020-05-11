@@ -47,9 +47,20 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3:</h3>
+         <h3> Option 3: Data sorted by education data </h3>
          <div class="column left">
-           <form action="" method="post">
+           <form action="education_3.php" method="post">
+             View <select id="topbottom" name="topbottom">
+               <option value="top">top</option>
+               <option value="bottom">bottom</option>
+             </select> (1-235) <input type="text" name="number"> countries by
+             <select id="attribute" name="attribute">
+               <option value="totalPublicExp">Total Public Expenditure on Education</option>
+               <option value="primaryEdPercent">Government Expenditure on Primary Education</option>
+               <option value="secondaryEdPercent">Government Expenditure on Secondary Education</option>
+               <option value="tertiaryEdPercent">Government Expenditure on Tertiary Education</option>
+             </select>.
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>

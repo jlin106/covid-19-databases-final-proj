@@ -47,9 +47,20 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3:</h3>
+         <h3> Option 3: Data sorted by travel data </h3>
          <div class="column left">
-           <form action="" method="post">
+           <form action="travel_3.php" method="post">
+             View <select id="topbottom" name="topbottom">
+               <option value="top">top</option>
+               <option value="bottom">bottom</option>
+             </select> (1-235) <input type="text" name="number"> countries by
+             <select id="attribute" name="attribute">
+               <option value="migrantPercentOfPop">International Migrant Percentage</option>
+               <option value="numRefugeesAndAsylum">Refugees and Asylum Seekers Percentage</option>
+               <option value="tourismExp">Toursim Expenditure</option>
+               <option value="numTourists">Tourist/Visitor Arrivals</option>
+             </select>.
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>
