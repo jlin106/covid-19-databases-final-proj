@@ -59,11 +59,13 @@ foreach ($countries as $country) {
         // Otherwise, we received real results, so output table
         } else {
           // Output each row of resulting relation
-          echo "<tr>";
-          for($i = 0; $i < sizeof($row); $i++){
-            echo "<td>" . $row[$i] . "</td>";
-          }
-          echo "</tr>";
+          do {
+              echo "<tr>";
+              for($i = 0; $i < sizeof($row); $i++){
+                  echo "<td>" . $row[$i] . "</td>";
+              }
+              echo "</tr>";
+          } while($row = $result->fetch_row());
         }
         $result->close();
         $mysqli->next_result();
@@ -75,6 +77,7 @@ foreach ($countries as $country) {
   } else {
      printf("<br>Error: %s\n", $mysqli->error);
   }
+  echo "<br>";
   echo "<h4>Exports To...</h4>";
   // It returns true if first statement executed successfully; false otherwise.
   // Results of first statement are retrieved via $mysqli->store_result()
@@ -99,11 +102,13 @@ foreach ($countries as $country) {
         // Otherwise, we received real results, so output table
         } else {
           // Output each row of resulting relation
-          echo "<tr>";
-          for($i = 0; $i < sizeof($row); $i++){
-            echo "<td>" . $row[$i] . "</td>";
-          }
-          echo "</tr>";
+          do {
+              echo "<tr>";
+              for($i = 0; $i < sizeof($row); $i++){
+                  echo "<td>" . $row[$i] . "</td>";
+              }
+              echo "</tr>";
+          } while($row = $result->fetch_row());
         }
         $result->close();
         $mysqli->next_result();
