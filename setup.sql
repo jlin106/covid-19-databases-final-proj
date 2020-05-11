@@ -398,7 +398,7 @@ BEGIN
   WHERE Education.countryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
     AND DailyCOVID19Reports.date = '2020-05-08'
-     AND Country.name = country;
+     AND Country.name = country
 
   ORDER BY
   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
@@ -428,7 +428,7 @@ BEGIN
   WHERE LaborForce.countryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
     AND DailyCOVID19Reports.date = '2020-05-08'
-     AND Country.name = country;
+     AND Country.name = country
 
   ORDER BY
   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
@@ -456,7 +456,7 @@ BEGIN
   WHERE Travel.countryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
     AND DailyCOVID19Reports.date = '2020-05-08'
-     AND Country.name = country;
+     AND Country.name = country
 
   ORDER BY
   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
@@ -484,7 +484,7 @@ BEGIN
   WHERE Health.countryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
     AND DailyCOVID19Reports.date = '2020-05-08'
-     AND Country.name = country;
+     AND Country.name = country
 
   ORDER BY
   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
@@ -512,7 +512,7 @@ BEGIN
   WHERE GDP.countryId = Country.countryId
    AND DailyCOVID19Reports.countryId = Country.countryId
     AND DailyCOVID19Reports.date = '2020-05-08'
-     AND Country.name = country;
+     AND Country.name = country
 
   ORDER BY
   CASE WHEN (topbottom = 'top' AND attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
