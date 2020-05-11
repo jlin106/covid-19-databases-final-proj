@@ -22,7 +22,7 @@
   <div class="container row">
     <h3> Option 1: Query by country </h3>
     <p> For the selected countries, display their major trading partners (imports and exports)
-      alone with some trade statistics and Covid-19 statistics </p>
+      along with some trade statistics and Covid-19 statistics </p>
     <div class="column left">
       <form action="trade_1.php" method="post">
         <label for="country[]">Select country/countries of interest:</label>
