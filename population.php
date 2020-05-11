@@ -47,9 +47,22 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3:</h3>
+         <h3> Option 3: Data sorted by population data </h3>
          <div class="column left">
            <form action="" method="post">
+             View <select id="topbottom" name="topbottom">
+               <option value="top">top</option>
+               <option value="bottom">bottom</option>
+             </select> (1-235) <input type="text" name="number"> countries by
+             <select id="attribute" name="attribute">
+               <option value="estPopSize">Estimated Population Size</option>
+               <option value="popDensity">Population Density</option>
+               <option value="rateIncrease">Population Rate of Increase</option>
+               <option value="lifeExpectancy">Life Expectancy</option>
+               <option value="mortalityRate">Infant Mortality Rate</option>
+               <option value="fertilityRate">Fertility Rate</option>
+             </select>.
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>

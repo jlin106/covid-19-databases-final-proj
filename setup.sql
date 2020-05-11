@@ -520,4 +520,40 @@ BEGIN
   LIMIT num;
 END;
 //
+DROP PROCEDURE IF EXISTS PopulationThree //
+CREATE PROCEDURE PopulationThree(topbottom VARCHAR(10), num SMALLINT, attribute VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Population.estPopSize,
+   Population.popDensity,
+   Population.rateIncrease,
+   Population.lifeExpectancy,
+   Population.mortalityRate,
+   Population.fertilityRate,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+
+  FROM Population, Country, DailyCOVID19Reports
+  WHERE Population.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+
+  ORDER BY
+  CASE WHEN (topbottom = 'top' AND attribute = 'estPopSize') THEN Population.estPopSize END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'estPopSize') THEN Population.estPopSize END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'popDensity') THEN Population.popDensity END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'popDensity') THEN Population.popDensity END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'rateIncrease') THEN Population.rateIncrease END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'rateIncrease') THEN Population.rateIncrease END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'lifeExpectancy') THEN Population.lifeExpectancy END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'lifeExpectancy') THEN Population.lifeExpectancy END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'mortalityRate') THEN Population.mortalityRate END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'mortalityRate') THEN Population.mortalityRate END ASC,
+  CASE WHEN (topbottom = 'top' AND attribute = 'fertilityRate') THEN Population.fertilityRate END DESC,
+  CASE WHEN (topbottom  = 'bottom' AND attribute = 'fertilityRate') THEN Population.fertilityRate END ASC
+
+  LIMIT num;
+END;
+//
 delimiter ;
