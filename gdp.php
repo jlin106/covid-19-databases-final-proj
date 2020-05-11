@@ -9,7 +9,7 @@
     <div class="container row">
          <h3> Option 1: GDP data from specified countries </h3>
          <div class="column left">
-           <form action="gdp_1.php" method="post">
+           <form action="GDP_1.php" method="post">
              <label for="country[]">Select country/countries of interest:</label>
              <br>
              <select id="country[]" name="country[]" multiple>
