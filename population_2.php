@@ -44,7 +44,7 @@ echo "<h3> Currently showing ";
 echo $topbottom;
 echo " ";
 echo $number;
-echo " countries sorted by "
+echo " countries sorted by ";
 echo ($attribute == 'numConfirmed') ? "number of confirmed cases." : "";
 echo ($attribute == 'numDeaths') ? "number of deaths." : "";
 echo ($attribute == 'numRecovered') ? "number of recovered cases" : "";
