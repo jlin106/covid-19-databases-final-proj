@@ -10,9 +10,9 @@
          <h3> Option 1: Travel data from specified countries </h3>
          <div class="column left">
            <form action="travel_1.php" method="post">
-             <label for="country">Select country/countries of interest:</label>
+             <label for="country[]">Select country/countries of interest:</label>
              <br>
-             <select id="country" name="country" multiple>
+             <select id="country[]" name="country[]" multiple>
              <?php
                $countries = $mysqli->query("SELECT name FROM Country");
                while ($rows = $countries->fetch_assoc()) {
@@ -20,24 +20,8 @@
                  echo "<option value='$country_name'>$country_name</option>";
                }
              ?>
-         </select>
-         <br>
-         <br>
-             <label for="travel_atrributes">Select travel data:</label>
-             <br>
-             <select id="travel_attributes" name="travel_attributes" multiple>
-//             Percent of Total Population
-               <option value="migrantPercentOfPop">International Migrant Percentage</option>
-//             Total number
-               <option value="numRefugeesAndAsylum">Refugees and Asylum Seekers Percentage</option>
-//             Millions of US Dollars
-               <option value="tourismExp">Toursim Expenditure</option>
-//             Thousands of Arrivals
-               <option value="numTourists">Tourist/Visitor Arrivals</option>
-               <option value="numConfirmed">Number of Confirmed Cases</option>
-               <option value="numDeaths">Number of Deaths</option>
-               <option value="numRecovered">Number of Recovered Cases</option>
              </select>
+             <br>
              <input type="submit" value="Submit">
            </form>
          </div>
@@ -61,4 +45,3 @@
          </div>
        </div>
 </body>
-

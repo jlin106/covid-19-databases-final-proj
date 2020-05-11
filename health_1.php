@@ -1,5 +1,5 @@
 <head>
- <title>Pop. Option 1</title>
+ <title>Health Option 1</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -9,12 +9,10 @@
 function outputResultsTableHeader() {
    echo "<tr>";
    echo "<th> Country </th>";
-   echo "<th> Estimated Population Size<br />(millions) </th>";
-   echo "<th> Population Density<br />(per km<sup>2</sup>) </th>";
-   echo "<th> Population Rate of Increase<br />(annual %) </th>";
-   echo "<th> Life Expectancy<br />(years) </th>";
-   echo "<th> Infant Mortality Rate<br />(per 1000 live births) </th>";
-   echo "<th> Fertility Rate<br />(live births per woman)</th>";
+   echo "<th> Health Expenditure<br />(% of total govt. exp.) </th>";
+   echo "<th> Physicians Per 1000<br /> </th>";
+   echo "<th> Percentage of Population with Access to Safe Sanitation Facilities<br />(%) </th>";
+   echo "<th> Percentage of Population with Access to Safe Water Facilities<br />(%) </th>";
    echo "<th> Number of Confimed Cases </th>";
    echo "<th> Number of Deaths </th>";
    echo "<th> Number of Recovered Cases </th>";
@@ -37,7 +35,7 @@ $countries = $_POST['country'];
 $countries_list = implode(', ', $countries);
 
 
-echo "<h2> Option 2: Query population data by country </h2>";
+echo "<h2> Option 2: Query health data by country </h2>";
 echo "<div class='container row'>";
 echo "<h3> Countries of Interest: ";
 echo $countries_list;
@@ -51,7 +49,7 @@ foreach ($countries as $country) {
   // It returns true if first statement executed successfully; false otherwise.
   // Results of first statement are retrieved via $mysqli->store_result()
   // from which we can call ->fetch_row() to see successive rows
-  if ($mysqli->multi_query("CALL PopulationByCountry('".$country."');")) {
+  if ($mysqli->multi_query("CALL HealthByCountry('".$country."');")) {
      // Check if a result was returned after the call
      if ($result = $mysqli->store_result()) {
 	      $row = $result->fetch_row();
@@ -61,8 +59,6 @@ foreach ($countries as $country) {
           echo "<td>";
           echo $country;
           echo "</td>";
-          echo "<td> No data </td>";
-          echo "<td> No data </td>";
           echo "<td> No data </td>";
           echo "<td> No data </td>";
           echo "<td> No data </td>";

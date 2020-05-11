@@ -261,4 +261,95 @@ BEGIN
      AND Country.name = country;
 END;
 //
+DROP PROCEDURE IF EXISTS EducationByCountry //
+CREATE PROCEDURE EducationByCountry(country VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Education.totalPublicExp,
+   Education.primaryEdPercent,
+   Education.secondaryEdPercent,
+   Education.tertiaryEdPercent,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Education, Country, DailyCOVID19Reports
+  WHERE Education.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+END;
+//
+DROP PROCEDURE IF EXISTS LaborForceByCountry //
+CREATE PROCEDURE LaborForceByCountry(country VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   LaborForce.laborForceParticipationRate,
+   LaborForce.unemploymentRate,
+   LaborForce.percentEmplAgriculture,
+   LaborForce.percentEmplIndustry,
+   LaborForce.percentEmplServices,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM LaborForce, Country, DailyCOVID19Reports
+  WHERE LaborForce.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+END;
+//
+DROP PROCEDURE IF EXISTS TravelByCountry //
+CREATE PROCEDURE TravelByCountry(country VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Travel.migrantPercentOfPop,
+   Travel.numRefugeesAndAsylum,
+   Travel.tourismExp,
+   Travel.numTourists,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Travel, Country, DailyCOVID19Reports
+  WHERE Travel.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+END;
+//
+DROP PROCEDURE IF EXISTS HealthByCountry //
+CREATE PROCEDURE HealthByCountry(country VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   Health.healthExp,
+   Health.physiciansPer1000,
+   Health.popUsingSafeSanitationFacilities,
+   Health.popUsingSafeWaterServices,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM Health, Country, DailyCOVID19Reports
+  WHERE Health.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+END;
+//
+DROP PROCEDURE IF EXISTS GDPByCountry //
+CREATE PROCEDURE GDPByCountry(country VARCHAR(40))
+BEGIN
+  SELECT Country.name,
+   GDP.gdp,
+   GDP.gdpPerCapita,
+   GDP.rdGDPExp,
+   GDP.healthGDPExp,
+   DailyCOVID19Reports.numConfirmed,
+   DailyCOVID19Reports.numDeaths,
+   DailyCOVID19Reports.numRecovered
+  FROM GDP, Country, DailyCOVID19Reports
+  WHERE GDP.countryId = Country.countryId
+   AND DailyCOVID19Reports.countryId = Country.countryId
+    AND DailyCOVID19Reports.date = '2020-05-08'
+     AND Country.name = country;
+END;
+//
 delimiter ;
