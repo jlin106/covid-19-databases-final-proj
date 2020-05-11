@@ -51,7 +51,6 @@ echo ($attribute == 'numRecovered') ? "number of recovered cases" : "";
 echo "</h3>";
 
 echo "<table border=\"1px solid black\">";
-outputResultsTableHeader();
 
 // It returns true if first statement executed successfully; false otherwise.
 // Results of first statement are retrieved via $mysqli->store_result()
