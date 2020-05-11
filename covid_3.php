@@ -45,21 +45,24 @@ if ($mysqli->multi_query("CALL CovidTimeSeries('".$country."');")) {
 
        echo "<table border=\"1px solid black\">";
        $row = $result->fetch_row();
+       if (strcmp($row[0], '') == 0) {
+         echo $country;
+         echo " has no COVID data!"
+       } else {
+         // Output appropriate table header row
+         outputResultsTableHeader();
 
-       // Output appropriate table header row
-       outputResultsTableHeader();
-
-       // Output each row of resulting relation
-       do {
-           echo "<tr>";
-           for($i = 0; $i < sizeof($row); $i++){
-               echo "<td>" . $row[$i] . "</td>";
-           }
-           echo "</tr>";
-       } while($row = $result->fetch_row());
-       echo "</table>";
+         // Output each row of resulting relation
+         do {
+             echo "<tr>";
+             for($i = 0; $i < sizeof($row); $i++){
+                 echo "<td>" . $row[$i] . "</td>";
+             }
+             echo "</tr>";
+         } while($row = $result->fetch_row());
+         echo "</table>";
+       }
        $result->close();
-
    }
 
 // The "multi_query" call did not end successfully, so report the error
