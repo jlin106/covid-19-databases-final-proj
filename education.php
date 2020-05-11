@@ -6,8 +6,13 @@
 ?>
 <body>
     <h2> Education and Covid-19 Data</h2>
+    <h3> Education statistics: Total Public Expenditure on Education (% of govt. exp),
+       Government Expenditure on Primary Education (% of govt. exp. on education),
+       Government Expenditure on Secondary Education (% of govt. exp. on education),
+       Government Expenditure on Tertiary Education (% of govt. exp. on education)</h3>
     <div class="container row">
-         <h3> Option 1: Education data from specified countries </h3>
+         <h3> Option 1: Query by country </h3>
+         <h4> View Education statistics along with Covid-19 statistics of selected countries </h4>
          <div class="column left">
            <form action="education_1.php" method="post">
              <label for="country[]">Select country/countries of interest:</label>
@@ -28,13 +33,20 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 2: Education data sorted by COVID data </h3>
+         <h3> Option 2: Query sort based on Covid-19 statistic </h3>
+         <h4> Sort the data based on a Covid-19 statistic and view the top few or bottom
+           few countries' Education statistics along with Covid-19 statistics.</h4>
+         <h4> (Ex. View the 5 countries' education data with the highest number of confirmed cases)
          <div class="column left">
            <form action="education_2.php" method="post">
-             View <select id="topbottom" name="topbottom">
+             View either the top countries or bottom countries
+             <select id="topbottom" name="topbottom">
                <option value="top">top</option>
                <option value="bottom">bottom</option>
-             </select> (1-235) <input type="text" name="number"> countries by
+             </select>
+             Enter number of countries to display (1-235)
+             <input type="text" name="number">
+             Sort by Covid-19 statistic:
              <select id="attribute" name="attribute">
                <option value="numConfirmed">Number of Confirmed Cases</option>
                <option value="numDeaths">Number of Deaths</option>
@@ -47,13 +59,20 @@
        </div>
        <br>
        <div class="container row">
-         <h3> Option 3: Data sorted by education data </h3>
+         <h3> Option 3: Query sort based on Education statistic </h3>
+         <h4> Sort the data based on an Education statistic and view the top few or bottom
+           few countries' Education statistics along with Covid-19 statistics.</h4>
+         <h4> (Ex. View the 5 countries' education data with the highest Total Public Expenditure on Education)
          <div class="column left">
            <form action="education_3.php" method="post">
-             View <select id="topbottom" name="topbottom">
+             View either the top countries or bottom countries
+             <select id="topbottom" name="topbottom">
                <option value="top">top</option>
                <option value="bottom">bottom</option>
-             </select> (1-235) <input type="text" name="number"> countries by
+             </select>
+             Enter number of countries to display (1-235)
+             <input type="text" name="number">
+             Sort by Education statistic:
              <select id="attribute" name="attribute">
                <option value="totalPublicExp">Total Public Expenditure on Education</option>
                <option value="primaryEdPercent">Government Expenditure on Primary Education</option>
