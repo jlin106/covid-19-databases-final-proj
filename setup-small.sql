@@ -207,38 +207,42 @@ LOAD DATA LOCAL INFILE './small_relation_data/exportsTo-small.txt'
  DROP PROCEDURE IF EXISTS small_CovidSortBy //
  CREATE PROCEDURE small_CovidSortBy(IN covid_date VARCHAR(40), covid_attribute VARCHAR(40))
  BEGIN
-   IF covid_attribute = 'numConfirmed' THEN
-     SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
-     FROM DailyCOVID19Reports_small, Country_small
-     WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date
-     ORDER BY numConfirmed DESC;
-   ELSEIF covid_attribute = 'numDeaths' THEN
-     SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
-     FROM DailyCOVID19Reports_small, Country_small
-     WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date
-     ORDER BY numDeaths DESC;
-   ELSE
-     SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
-     FROM DailyCOVID19Reports_small, Country_small
-     WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date
-     ORDER BY numRecovered DESC;
-   END IF;
+   SELECT Country_small.name,
+     DailyCOVID19Reports_small.numConfirmed,
+     DailyCOVID19Reports_small.numDeaths,
+     DailyCOVID19Reports_small.numRecovered
+   FROM DailyCOVID19Reports_small, Country_small
+   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND date = covid_date
+   ORDER BY
+   CASE WHEN (covid_attribute = 'numConfirmed') THEN DailyCOVID19Reports_small.numConfirmed END DESC,
+   CASE WHEN (covid_attribute = 'numDeaths') THEN DailyCOVID19Reports_small.numDeaths END DESC,
+   CASE WHEN (covid_attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END DESC;
  END;
  //
  DROP PROCEDURE IF EXISTS small_CovidByCountry //
  CREATE PROCEDURE small_CovidByCountry(IN covid_date VARCHAR(40), country VARCHAR(40))
  BEGIN
-   SELECT Country_small.name, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+   SELECT Country_small.name,
+     DailyCOVID19Reports_small.numConfirmed,
+     DailyCOVID19Reports_small.numDeaths,
+     DailyCOVID19Reports_small.numRecovered
    FROM DailyCOVID19Reports_small, Country_small
-   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND date = covid_date AND Country_small.name = country;
+   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND date = covid_date
+       AND Country_small.name = country;
  END;
  //
  DROP PROCEDURE IF EXISTS small_CovidTimeSeries //
  CREATE PROCEDURE small_CovidTimeSeries(IN country VARCHAR(40))
  BEGIN
-   SELECT DailyCOVID19Reports_small.date, DailyCOVID19Reports_small.numConfirmed, DailyCOVID19Reports_small.numDeaths, DailyCOVID19Reports_small.numRecovered
+   SELECT DailyCOVID19Reports_small.date,
+     DailyCOVID19Reports_small.numConfirmed,
+     DailyCOVID19Reports_small.numDeaths,
+     DailyCOVID19Reports_small.numRecovered
    FROM DailyCOVID19Reports_small, Country_small
-   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId AND Country_small.name = country;
+   WHERE DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND Country_small.name = country;
  END;
  //
  DROP PROCEDURE IF EXISTS small_PopulationByCountry //
@@ -518,6 +522,38 @@ LOAD DATA LOCAL INFILE './small_relation_data/exportsTo-small.txt'
    CASE WHEN (topbottom  = 'bottom' AND attribute = 'numRecovered') THEN DailyCOVID19Reports_small.numRecovered END ASC
 
    LIMIT num;
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_ImportsByCountry //
+ CREATE PROCEDURE small_ImportsByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT countryId INTO @mainCountryId FROM Country_small WHERE name = country;
+   SELECT Country_small.name,
+    ImportsFrom_small.percentImportOfTotalTrade,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM ImportsFrom_small, Country_small, DailyCOVID19Reports_small
+   WHERE ImportsFrom_small.countryId = @mainCountryId
+   AND ImportsFrom.importFromCountryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08';
+ END;
+ //
+ DROP PROCEDURE IF EXISTS small_ExportsByCountry //
+ CREATE PROCEDURE small_ExportsByCountry(country VARCHAR(40))
+ BEGIN
+   SELECT countryId INTO @mainCountryId FROM Country_small WHERE name = country;
+   SELECT Country_small.name,
+    ExportsTo_small.percentExportOfTotalTrade,
+    DailyCOVID19Reports_small.numConfirmed,
+    DailyCOVID19Reports_small.numDeaths,
+    DailyCOVID19Reports_small.numRecovered
+   FROM ExportsTo_small, Country_small, DailyCOVID19Reports_small
+   WHERE ExportsTo_small.countryId = @mainCountryId
+   AND ExportsTo_small.exportToCountryId = Country_small.countryId
+    AND DailyCOVID19Reports_small.countryId = Country_small.countryId
+     AND DailyCOVID19Reports_small.date = '2020-05-08';
  END;
  //
  DROP PROCEDURE IF EXISTS small_PopulationThree //
