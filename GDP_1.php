@@ -1,5 +1,5 @@
 <head>
- <title>Health Option 1</title>
+ <title>GDP Option 1</title>
  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
