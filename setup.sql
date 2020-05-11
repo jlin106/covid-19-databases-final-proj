@@ -207,38 +207,42 @@ delimiter //
 DROP PROCEDURE IF EXISTS CovidSortBy //
 CREATE PROCEDURE CovidSortBy(IN covid_date VARCHAR(40), covid_attribute VARCHAR(40))
 BEGIN
-  IF covid_attribute = 'numConfirmed' THEN
-    SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
-    FROM DailyCOVID19Reports, Country
-    WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-    ORDER BY numConfirmed DESC;
-  ELSEIF covid_attribute = 'numDeaths' THEN
-    SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
-    FROM DailyCOVID19Reports, Country
-    WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-    ORDER BY numDeaths DESC;
-  ELSE
-    SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
-    FROM DailyCOVID19Reports, Country
-    WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date
-    ORDER BY numRecovered DESC;
-  END IF;
+  SELECT Country.name,
+    DailyCOVID19Reports.numConfirmed,
+    DailyCOVID19Reports.numDeaths,
+    DailyCOVID19Reports.numRecovered
+  FROM DailyCOVID19Reports, Country
+  WHERE DailyCOVID19Reports.countryId = Country.countryId
+    AND date = covid_date
+  ORDER BY
+  CASE WHEN (covid_attribute = 'numConfirmed') THEN DailyCOVID19Reports.numConfirmed END DESC,
+  CASE WHEN (covid_attribute = 'numDeaths') THEN DailyCOVID19Reports.numDeaths END DESC,
+  CASE WHEN (covid_attribute = 'numRecovered') THEN DailyCOVID19Reports.numRecovered END DESC;
 END;
 //
 DROP PROCEDURE IF EXISTS CovidByCountry //
 CREATE PROCEDURE CovidByCountry(IN covid_date VARCHAR(40), country VARCHAR(40))
 BEGIN
-  SELECT Country.name, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
+  SELECT Country.name,
+    DailyCOVID19Reports.numConfirmed,
+    DailyCOVID19Reports.numDeaths,
+    DailyCOVID19Reports.numRecovered
   FROM DailyCOVID19Reports, Country
-  WHERE DailyCOVID19Reports.countryId = Country.countryId AND date = covid_date AND Country.name = country;
+  WHERE DailyCOVID19Reports.countryId = Country.countryId
+    AND date = covid_date
+      AND Country.name = country;
 END;
 //
 DROP PROCEDURE IF EXISTS CovidTimeSeries //
 CREATE PROCEDURE CovidTimeSeries(IN country VARCHAR(40))
 BEGIN
-  SELECT DailyCOVID19Reports.date, DailyCOVID19Reports.numConfirmed, DailyCOVID19Reports.numDeaths, DailyCOVID19Reports.numRecovered
+  SELECT DailyCOVID19Reports.date,
+    DailyCOVID19Reports.numConfirmed,
+    DailyCOVID19Reports.numDeaths,
+    DailyCOVID19Reports.numRecovered
   FROM DailyCOVID19Reports, Country
-  WHERE DailyCOVID19Reports.countryId = Country.countryId AND Country.name = country;
+  WHERE DailyCOVID19Reports.countryId = Country.countryId
+    AND Country.name = country;
 END;
 //
 DROP PROCEDURE IF EXISTS PopulationByCountry //
