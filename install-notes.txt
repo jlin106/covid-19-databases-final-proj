@@ -1,0 +1,4 @@
+Jennifer Lin, jlin123
+Tanner Amundsen, tamunds1
+
+No special instructions are needed. All of our stored procedures and functions are described in our setup.sql script. Just make sure to change the mode of our html, css and php files to be readable before accessing the files on an internet browser.
