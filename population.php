@@ -6,15 +6,6 @@
 ?>
 <body>
     <h2> Population and Covid-19 Data</h2>
-    <p> Population statistics: </p>
-    <ul>
-      <li>Estimated Population Size</li>
-      <li>Population Density</li>
-      <li>Population Rate of Increase</li>
-      <li>Life Expectancy</li>
-      <li>Infant Mortality Rate</li>
-      <li>Fertility Rate</li>
-    </ul>
     <div class="container row">
          <h3> Option 1: Query by country </h3>
          <p> View Population statistics along with Covid-19 statistics of selected countries </p>

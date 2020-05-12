@@ -6,13 +6,6 @@
 ?>
 <body>
     <h2> Travel and Covid-19 Data</h2>
-    <p> Travel statistics: </p>
-    <ul>
-      <li>International Migrant Percentage</li>
-      <li>Refugees and Asylum Seekers Percentage</li>
-      <li>Toursim Expenditure</li>
-      <li>Tourist/Visitor Arrivals</li>
-    </ul>
     <div class="container row">
       <h3> Option 1: Query by country </h3>
       <p> View Travel statistics along with Covid-19 statistics of selected countries </p>

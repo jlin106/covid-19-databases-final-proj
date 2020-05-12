@@ -25,6 +25,10 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
+a {
+  font-size: 1000px;
+}
+
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;

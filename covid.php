@@ -6,12 +6,6 @@
     include 'open.php';
   ?>
   <h2> Covid-19 Data </h2>
-  <p> Covid-19 statistics: </p>
-  <ul>
-    <li>Number of Confirmed Cases</li>
-    <li>Number of Deaths</li>
-    <li>Number of Recovered Cases</li>
-  </ul>
   <div class="container row">
     <h3> Option 1: Query by date and sorted attribute </h3>
     <p> View Covid-19 statistics on a certain date, sorted by a covid statistic </p>

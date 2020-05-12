@@ -6,13 +6,6 @@
 ?>
 <body>
     <h2> Education and Covid-19 Data</h2>
-    <p> Education statistics: </p>
-    <ul>
-      <li>Total Public Expenditure on Education (% of govt. exp)</li>
-      <li>Government Expenditure on Primary Education (% of govt. exp. on education)</li>
-      <li>Government Expenditure on Secondary Education (% of govt. exp. on education)</li>
-      <li>Government Expenditure on Tertiary Education (% of govt. exp. on education)</li>
-    </ul>
     <div class="container row">
          <h3> Option 1: Query by country </h3>
          <p> View Education statistics along with Covid-19 statistics of selected countries </p>

@@ -6,14 +6,6 @@
 ?>
 <body>
     <h2> Health and Covid-19 Data</h2>
-    <p> Health statistics: </p>
-    <ul>
-      <li>Health Expenditure</li>
-      <li>Refugees and Asylum Seekers Percentage</li>
-      <li>Physicians Per 1000</li>
-      <li>Percentage of Population with Access to Safe Sanitation Facilities</li>
-      <li>Percentage of Population with Access to Safe Water Facilities</li>
-    </ul>
     <div class="container row">
       <h3> Option 1: Query by country </h3>
       <p> View Health statistics along with Covid-19 statistics of selected countries </p>

@@ -6,13 +6,6 @@
 ?>
 <body>
     <h2> GDP and Covid-19 Data</h2>
-    <p> GDP statistics: </p>
-    <ul>
-      <li>GDP</li>
-      <li>GDP Per Capita</li>
-      <li>Research and Development Expenditure</li>
-      <li>Health Expenditure</li>
-    </ul>
     <div class="container row">
       <h3> Option 1: Query by country </h3>
       <p> View GDP statistics along with Covid-19 statistics of selected countries </p>

@@ -6,19 +6,6 @@
     include 'open.php';
   ?>
   <h2> Trade and Covid-19 Data </h2>
-  <p> Trade statistics: </p>
-  <ul>
-    <li>Major Trading Partners - Imports</li>
-    <ul>
-      <li>Country Name</li>
-      <li>Percent Import of Total Trade</li>
-    </ul>
-    <li>Major Trading Partners - Exports</li>
-    <ul>
-      <li>Country Name</li>
-      <li>Percent Export of Total Trade</li>
-    </ul>
-  </ul>
   <div class="container row">
     <h3> Option 1: Query by country </h3>
     <p> For the selected countries, display their major trading partners (imports and exports)

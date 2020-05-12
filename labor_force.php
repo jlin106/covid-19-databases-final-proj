@@ -6,14 +6,6 @@
 ?>
 <body>
     <h2> Labor Force and Covid-19 Data</h2>
-    <p> Labor Force statistics: </p>
-    <ul>
-      <li>Labor Force Participation Rate</li>
-      <li>Unemployment Rate</li>
-      <li>Percentage Employed in Agriculture</li>
-      <li>Percentage Employed in Industry</li>
-      <li>Percentage Employed in Service</li>
-    </ul>
     <div class="container row">
       <h3> Option 1: Query by country </h3>
       <p> View Labor Force statistics along with Covid-19 statistics of selected countries </p>
