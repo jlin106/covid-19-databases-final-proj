@@ -39,8 +39,8 @@
                <option value="top">top</option>
                <option value="bottom">bottom</option>
              </select>
-             Enter number of countries to display (1-235)
-             <input type="text" name="number" required>
+             Enter number of countries to display (1-235) <br>
+             <input type="number" name="number" min ="0" max ="235" required> <br>
              Sort by Covid-19 statistic:
              <select id="attribute" name="attribute" required>
                <option value="numConfirmed">Number of Confirmed Cases</option>
@@ -64,8 +64,8 @@
                <option value="top">top</option>
                <option value="bottom">bottom</option>
              </select>
-             Enter number of countries to display (1-235)
-             <input type="text" name="number" required>
+             Enter number of countries to display (1-235) <br>
+             <input type="number" name="number" min ="0" max ="235" required> <br>
              Sort by Health statistic:
              <select id="attribute" name="attribute" required>
                <option value="healthExp">Health Expenditure</option>
