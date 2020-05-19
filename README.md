@@ -16,5 +16,5 @@ COVID-19 according to JHU. Our small tables sometimes have >15 rows because, for
 dailyCOVID19Reports have data for several days. Additionally, the ImportsFrom_small and
 ExportsTo_small have >15 rows because each country can have several trading partners.
 
-
+Demo Video: https://youtu.be/JQt8q7fM5kA
 
